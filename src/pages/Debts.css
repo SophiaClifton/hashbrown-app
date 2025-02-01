@@ -1,0 +1,23 @@
+.debts-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .sidebar {
+    width: 250px; /* Set width for sidebar */
+  }
+  
+  .expanding-list {
+    flex-grow: 1; /* Takes the remaining space */
+  }
+  
+  .chatbot {
+    width: 300px; /* Adjust width of chatbot */
+  }
+  
