@@ -49,7 +49,7 @@ const DoughnutCharts: React.FC = () => {
             {/* Income Doughnut Chart */}
             <div className="chart" style={{ flex: 1, maxWidth: '500px' }}>
                 <h3>Income</h3>
-                <ResponsiveContainer width="100%" height={250}>
+                <ResponsiveContainer width={500} height={250}>
                     <PieChart>
                         <Pie
                             data={incomeData}
@@ -74,7 +74,7 @@ const DoughnutCharts: React.FC = () => {
             {/* Expenses Doughnut Chart */}
             <div className="chart" style={{ flex: 1, maxWidth: '500px' }}>
                 <h3>Expenses</h3>
-                <ResponsiveContainer width="100%" height={250}>
+                <ResponsiveContainer width={500} height={250}>
                     <PieChart>
                         <Pie
                             data={expenseData}
