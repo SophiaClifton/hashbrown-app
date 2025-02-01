@@ -3,26 +3,52 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    width: 70%;
-  }
+    
+    width: 100%;
+}
   
 .rectangle {
-    width: 70%;
+    width: 100%;
     height: 100px;
     background-color: #3498db;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     font-size: 20px;
     cursor: pointer;
     transition: all 0.4s ease-in-out;
     border-radius: 8px;
     text-align: center;
 }
+
+.rectangle-content {
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr; 
+    background-color: #30107b;
+    width: 100%;
+}
+
+.graph-1{
+    display: block !important; 
+    width: 100%;
+    overflow: visible;
+}
   
+.graph-2{
+    display: block !important; 
+    order: 3;
+    width: 100%;
+    overflow: visible;
+}
+
+.filler{
+    background-color: #2980b9;
+}
+
 .rectangle.expanded {
-    width: 70%;
+    width: 100%;
     height: 80vh;
     background-color: #2980b9;
 }

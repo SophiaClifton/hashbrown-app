@@ -4,9 +4,14 @@ import Sidebar from "../components/Sidebar";
 import Chatbot from "../components/Chatbot";
 import ExpandingDebtRectangleList from '../components/ExpandingDebtRectangleList';
 import "./Debts.css"
+import SimpleAreaGraph from '../components/SimpleAreaGraph';
+import DebtChart from '../components/DebtChart';
 
 const Debts: React.FC = () => {
-  const items: string[] = ["Rectangle 1", "Rectangle 2", "Rectangle 3"];
+  const items = [
+    { label: "Mortgage", content: <DebtChart/> },
+    { label: "Car Loan", content: <SimpleAreaGraph/> }
+    ];
   return (
     <div className="debts-container">
       <Banner />

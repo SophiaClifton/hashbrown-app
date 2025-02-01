@@ -20,7 +20,6 @@ const Sidebar: React.FC = () => {
             
             <li className="sub"><Link to="/transactions">Transactions</Link></li> {/* Closing Link tag added */}
             <li className="sub"><Link to="/debts">Debts</Link> </li>
-            <li className="sub"><a href="#debts">Debts</a></li>
             <li className="sub"><a href="#cash-flow">Forecasted Cash Flow</a></li>
           </ul>
         </li>
