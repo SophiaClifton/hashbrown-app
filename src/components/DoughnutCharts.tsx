@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 // Import the JSON data
 import data from '../dummy_assets/user1.json'; // Adjust the path based on where your data file is located
@@ -45,11 +45,11 @@ const DoughnutCharts: React.FC = () => {
     }, []);
 
     return (
-        <div className="charts-container">
+        <div className="charts-container" style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
             {/* Income Doughnut Chart */}
-            <div className="chart">
+            <div className="chart" style={{ flex: 1, maxWidth: '500px' }}>
                 <h3>Income</h3>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
                         <Pie
                             data={incomeData}
@@ -67,15 +67,14 @@ const DoughnutCharts: React.FC = () => {
                             ))}
                         </Pie>
                         <Tooltip />
-                        <Legend />
                     </PieChart>
                 </ResponsiveContainer>
             </div>
 
             {/* Expenses Doughnut Chart */}
-            <div className="chart">
+            <div className="chart" style={{ flex: 1, maxWidth: '500px' }}>
                 <h3>Expenses</h3>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
                         <Pie
                             data={expenseData}
@@ -93,7 +92,6 @@ const DoughnutCharts: React.FC = () => {
                             ))}
                         </Pie>
                         <Tooltip />
-                        <Legend />
                     </PieChart>
                 </ResponsiveContainer>
             </div>

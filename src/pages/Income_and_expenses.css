@@ -1,0 +1,26 @@
+/* General Layout Styling */
+.main-layout {
+    display: flex;               /* Use flexbox to arrange elements horizontally */
+    justify-content: flex-start; /* Align items to the left */
+    align-items: flex-start;     /* Align items to the top */
+    padding: 20px;
+}
+
+.Sidebar {
+    width: 250px;  /* Adjust the width of the sidebar */
+    flex-shrink: 0; /* Prevent the sidebar from shrinking */
+}
+
+.main-content {
+    flex-grow: 1;    /* Allow this section to take up remaining space */
+    padding-left: 20px; /* Add some padding to the left */
+    display: flex;
+    justify-content: center;  /* Center the doughnut chart inside */
+    align-items: center;      /* Vertically center the doughnut chart */
+}
+
+/* Optional: Style for the DoughnutCharts component */
+.main-content .DoughnutCharts {
+    max-width: 500px;   /* Limit the max width of the charts */
+    width: 100%;        /* Ensure it uses the available space */
+}

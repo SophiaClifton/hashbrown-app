@@ -35,7 +35,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
                 color: transaction.amount < 0 ? 'red' : 'green',
                 fontFamily: 'Arial, sans-serif',
                 cursor: 'pointer',
-                transition: 'all 1s ease-in-out', // Smooth transition for the whole card
+                transition: 'all 0.3s ease-in-out', // Smooth transition for the whole card
                 width: 1000,
             }}
             onClick={toggleExpanded} // Toggle expansion on click
