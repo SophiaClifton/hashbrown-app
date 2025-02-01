@@ -1,0 +1,15 @@
+.banner-section {
+    text-align: center;
+    width: 100%;
+    background-color: #7990b5;
+    padding: 20px 0 20px 0;
+  }
+
+  .banner-text {
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-size: 24px;
+    color: white;
+    padding: 20px 0 20px 0;
+  }
+  
