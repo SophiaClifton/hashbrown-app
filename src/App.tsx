@@ -1,17 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Banner from "./components/Banner";
-import Sidebar from "./components/Sidebar";
-import Chatbot from "./components/Chatbot";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Transactions from './pages/Transactions';
+import Home from './pages/Home';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <Banner/>
-      <Sidebar/>
-      <Chatbot/>
-    </div>
+    <Router>
+  <div>
+    {/* Common elements */}
+    
+
+    <Routes>
+      {/* Home route */}
+      <Route index element={<Home />} />
+
+      {/* Transactions page route */}
+      <Route path="/transactions" element={<Transactions />} />
+    </Routes>
+  </div>
+</Router>
+
   );
 };
 
