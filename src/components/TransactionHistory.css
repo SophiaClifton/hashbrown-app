@@ -1,0 +1,24 @@
+/* App.css or TransactionHistory.css */
+.transaction-item {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Adjust layout of expanded details */
+.transaction-item div {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Styling for alternating background colors */
+.transaction-item:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.transaction-item:nth-child(even) {
+    background-color: #eef2f7;
+}
