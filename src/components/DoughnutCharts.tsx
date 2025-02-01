@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-// Sample data for income and expenses
-const incomeData = [
-    { name: 'Salary', value: 5000 },
-    { name: 'Freelance', value: 2000 },
-    { name: 'Investments', value: 1500 },
-    { name: 'Other', value: 1000 }
-];
+// Import the JSON data
+import data from '../dummy_assets/user1.json'; // Adjust the path based on where your data file is located
 
-const expensesData = [
-    { name: 'Rent', value: 1200 },
-    { name: 'Groceries', value: 800 },
-    { name: 'Utilities', value: 300 },
-    { name: 'Entertainment', value: 400 },
-    { name: 'Other', value: 200 }
-];
-
-// Colors for the chart sections
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const DoughnutCharts: React.FC = () => {
+    const [incomeData, setIncomeData] = useState<any[]>([]);
+    const [expenseData, setExpenseData] = useState<any[]>([]);
+
+    useEffect(() => {
+        // Process transactions into income and expenses
+        const transactions = data.transactions["2025-02"];
+        let incomeCategories: any = {};
+        let expenseCategories: any = {};
+
+        transactions.forEach(transaction => {
+            const amount = transaction.amount;
+            const category = transaction.category;
+
+            if (amount > 0) {
+                // Income
+                incomeCategories[category] = (incomeCategories[category] || 0) + amount;
+            } else {
+                // Expense
+                expenseCategories[category] = (expenseCategories[category] || 0) + Math.abs(amount);
+            }
+        });
+
+        // Convert object to array for rendering
+        const incomeArr = Object.keys(incomeCategories).map(category => ({
+            name: category,
+            value: incomeCategories[category]
+        }));
+
+        const expenseArr = Object.keys(expenseCategories).map(category => ({
+            name: category,
+            value: expenseCategories[category]
+        }));
+
+        setIncomeData(incomeArr);
+        setExpenseData(expenseArr);
+    }, []);
+
     return (
         <div className="charts-container">
             {/* Income Doughnut Chart */}
@@ -34,8 +57,8 @@ const DoughnutCharts: React.FC = () => {
                             nameKey="name"
                             cx="50%"
                             cy="50%"
-                            outerRadius={80} // Outer radius of the doughnut
-                            innerRadius={60} // Inner radius to create the hole
+                            outerRadius={80}
+                            innerRadius={60}
                             fill="#8884d8"
                             label
                         >
@@ -55,17 +78,17 @@ const DoughnutCharts: React.FC = () => {
                 <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                         <Pie
-                            data={expensesData}
+                            data={expenseData}
                             dataKey="value"
                             nameKey="name"
                             cx="50%"
                             cy="50%"
-                            outerRadius={80} // Outer radius of the doughnut
-                            innerRadius={60} // Inner radius to create the hole
-                            fill="#8884d8"
+                            outerRadius={80}
+                            innerRadius={60}
+                            fill="#FF8042"
                             label
                         >
-                            {expensesData.map((entry, index) => (
+                            {expenseData.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
