@@ -16,10 +16,10 @@ const Sidebar: React.FC = () => {
         <li>
           <a href="#managing-finances">Managing Finances</a>
           <ul>
-            <li className="sub"><a href="#income-expenses">Income and Expenses</a></li>
-            {/* Corrected Link tag with proper closing */}
+            <li className="sub"><Link to="/income_and_expenses">Income_and_expenses</Link></li>
+            
             <li className="sub"><Link to="/transactions">Transactions</Link></li> {/* Closing Link tag added */}
-            <li className="sub"><a href="#investments">Investments</a></li>
+            <li className="sub"><Link to="/debts">Debts</Link> </li>
             <li className="sub"><a href="#debts">Debts</a></li>
             <li className="sub"><a href="#cash-flow">Forecasted Cash Flow</a></li>
           </ul>
