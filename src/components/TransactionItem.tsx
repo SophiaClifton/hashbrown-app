@@ -27,7 +27,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
     return (
         <div
             style={{
-                backgroundColor: transaction.amount < 0 ? '#ffdddd' : '#ddffdd',
+                backgroundColor: transaction.amount < 0 ? '#ffddd0' : '#ddffd0',
                 padding: '15px',
                 margin: '10px 0',
                 borderRadius: '10px',
@@ -35,7 +35,8 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
                 color: transaction.amount < 0 ? 'red' : 'green',
                 fontFamily: 'Arial, sans-serif',
                 cursor: 'pointer',
-                width: 1000
+                transition: 'all 1s ease-in-out', // Smooth transition for the whole card
+                width: 1000,
             }}
             onClick={toggleExpanded} // Toggle expansion on click
         >
@@ -48,11 +49,18 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
 
             {/* Show basic info by default */}
             <div style={{ marginBottom: '10px', fontSize: '14px' }}>
-                <strong>Transaction Type:</strong> {transaction.category}
+                {transaction.category}
             </div>
 
-            {/* Show more details if expanded */}
-            {isExpanded && (
+            {/* Expandable content container */}
+            <div
+                style={{
+                    overflow: 'hidden', // Hide the content initially
+                    maxHeight: isExpanded ? '500px' : '0', // Change maxHeight to animate the expansion
+                    transition: 'max-height 0.3s ease-in-out', // Animate the max-height
+                }}
+            >
+                {/* Show more details if expanded */}
                 <div style={{ marginTop: '10px' }}>
                     <div style={{ fontSize: '14px' }}>
                         <strong>Payment Method:</strong> {transaction.payment_method || 'N/A'}
@@ -67,7 +75,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({ transaction }) => {
                         <strong>Currency:</strong> {transaction.currency || 'N/A'}
                     </div>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
