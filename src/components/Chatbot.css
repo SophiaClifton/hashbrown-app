@@ -1,0 +1,52 @@
+.chatbot-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.chatbot-status {
+  position: fixed;
+  bottom: 90px;  /* Adjust this value based on your chatbot bubble size */
+  right: 30px;
+  background-color: #7990b5;  /* Same as banner color */
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+}
+
+.status-text {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.9);
+  }
+  
+  70% {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 15px rgba(46, 204, 113, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
+  }
+} 

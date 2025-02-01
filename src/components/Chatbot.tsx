@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import './Chatbot.css'
 
 const Chatbot = () => {
   useEffect(() => {
@@ -16,7 +17,15 @@ const Chatbot = () => {
     document.body.appendChild(script2)
   }, [])
 
-  return <div id="webchat" />
+  return (
+    <div className="chatbot-container">
+      <div className="chatbot-status">
+        <span className="status-text">Need financial help? 👋</span>
+        <span className="status-indicator"></span>
+      </div>
+      <div id="webchat" />
+    </div>
+  )
 }
 
 export default Chatbot
