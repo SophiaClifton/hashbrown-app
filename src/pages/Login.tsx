@@ -19,19 +19,24 @@ const Login: React.FC = () => {
     setLoading(true);
 
     try {
-      // Updated to use the new API endpoint
       const response = await fetch(`${API_URL}verify_user?email=${encodeURIComponent(email)}`);
       const data = await response.json();
 
       console.log("API Response:", data); // Log full response
 
       if (response.ok && data.isValid) {
-        // Set user data from API response
-        setUser({
-          username: data.username,
-          id: data.id,
-          email: data.email
-        });
+        // Ensure all required user data is present
+        const userData = {
+          username: data.username || email.split('@')[0], // Fallback to email username if name not provided
+          id: data.id || Date.now(), // Fallback to timestamp if no ID
+          email: data.email || email
+        };
+
+        // Set user data
+        setUser(userData);
+        
+        // Also store in sessionStorage as backup
+        sessionStorage.setItem('user', JSON.stringify(userData));
 
         // Navigate to home page
         navigate('/');
