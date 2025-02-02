@@ -147,8 +147,12 @@ const Home: React.FC = () => {
             </div>
           </div>
 
+          
+
+          {/* Getting Started Section */}
           {/* Wave Divider */}
-          <div className="wave-divider">
+        </div>
+        <div className="wave-divider">
             <div className="wave-animation">
               <div className="wave wave1"></div>
               <div className="wave wave2"></div>
@@ -156,10 +160,9 @@ const Home: React.FC = () => {
             </div>
             <h2 className="wave-tagline">Make waves in finance</h2>
           </div>
-
-          {/* Getting Started Section */}
-        </div>
       </div>
+      
+      
       <Chatbot />
     </>
   );

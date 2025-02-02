@@ -129,6 +129,7 @@ body.dark-mode .fin-message-bubble::before {
 /* Update Wave Divider styles */
 .wave-divider {
   position: relative;
+  background-color: #75b4e7;
   width: 100%;
   height: 200px;
   margin-top: 60px;
@@ -197,6 +198,9 @@ body.dark-mode .fin-message-bubble::before {
 }
 
 /* Dark mode adjustments */
+body.dark-mode .wave-divider{
+  background-color: #42709b;
+} 
 body.dark-mode .wave1 {
   background-color: rgba(96, 165, 250, 0.2);
 }
@@ -209,7 +213,8 @@ body.dark-mode .wave3 {
   background-color: rgba(96, 165, 250, 0.4);
 }
 
-body.dark-mode .wave-tagline {
+body.dark-mode .wave-tagline h2 {
+  color:#1a202c;
   background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
