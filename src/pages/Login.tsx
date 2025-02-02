@@ -19,6 +19,7 @@ const Login: React.FC = () => {
     setLoading(true);
 
     try {
+      console.log(email)
       const response = await fetch(`${API_URL}verify_user?email=${encodeURIComponent(email)}`);
       const data = await response.json();
 
@@ -27,9 +28,9 @@ const Login: React.FC = () => {
       if (response.ok && data.isValid) {
         // Ensure all required user data is present
         const userData = {
-          username: data.username || email.split('@')[0], // Fallback to email username if name not provided
-          id: data.id || Date.now(), // Fallback to timestamp if no ID
-          email: data.email || email
+          username: data.name,
+          id: data.id,
+          email: data.email 
         };
 
         // Set user data

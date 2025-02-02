@@ -7,9 +7,9 @@ interface User {
 }
 
 export const defaultUser: User = {
-  username: "Penny Stock",
+  username: "Penny",
   email: "stock@gmail.com",
-  id: 1,
+  id: 3,
 };
 
 
@@ -65,7 +65,7 @@ export const useSession = (): SessionContextType => {
 
   // Always return a default user when no session exists
   return {
-    user: context.user ?? defaultUser,
+    user: context.user ?? null,
     setUser: context.setUser,
   };
 };
