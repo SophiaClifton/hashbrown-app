@@ -2,14 +2,31 @@
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    background-color: brown;
-  }
-  
-  .income, .expenses {
-    width: 45%;
-  }
-  
-  h2 {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.income, .expenses {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
     text-align: center;
-  }
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Dark mode styles */
+body.dark-mode .income,
+body.dark-mode .expenses {
+    background: #2D3748;
+}
+
+body.dark-mode h2 {
+    color: #E2E8F0;
+}
   

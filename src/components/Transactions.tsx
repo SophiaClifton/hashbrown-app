@@ -1,18 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "./Sidebar.css";
+import "./Transactions.css";
 
 const Transactions: React.FC = () => {
   return (
-    <div className="sidebar">
-      <ul>
-        <li>
-          <Link to="/income_and_expenses">Income and Expenses</Link>
-        </li>
-        <li>
-          <Link to="/financial-literacy-quiz">Financial Literacy Quiz</Link>
-        </li>
-      </ul>
+    <div className="transactions-container">
+      <div className="income">
+        <h2>Income</h2>
+        {/* Add income transactions here */}
+      </div>
+      <div className="expenses">
+        <h2>Expenses</h2>
+        {/* Add expense transactions here */}
+      </div>
     </div>
   );
 };
