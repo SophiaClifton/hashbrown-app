@@ -413,6 +413,24 @@ const FinancialLiteracyQuiz: React.FC = () => {
   };
 
   useEffect(() => {
+    // Play welcome message when component mounts
+    const message = "Financial Literacy Quiz. Press m to hear the introductory message and press space to begin the quiz";
+    const utterance = new SpeechSynthesisUtterance(message);
+    window.speechSynthesis.speak(utterance);
+
+    // Add spacebar handler
+    const handleSpacePress = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && !quizStarted) {
+        e.preventDefault(); // Prevent page scrolling
+        handleStartClick();
+      }
+    };
+
+    window.addEventListener('keydown', handleSpacePress);
+    return () => window.removeEventListener('keydown', handleSpacePress);
+  }, [quizStarted]); // Add quizStarted to dependencies
+
+  useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === 'm') {
         readMessage();
