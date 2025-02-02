@@ -150,15 +150,15 @@ const Home: React.FC = () => {
 
           {/* Wave Divider */}
           <div className="wave-divider">
-            <FaWater className="wave-icon" />
+            <div className="wave-animation">
+              <div className="wave wave1"></div>
+              <div className="wave wave2"></div>
+              <div className="wave wave3"></div>
+            </div>
+            <h2 className="wave-tagline">Make waves in finance</h2>
           </div>
 
           {/* Getting Started Section */}
-          <div className="getting-started">
-            <h2>Start Your Financial Journey Today :D</h2>
-            <div className="steps-container">
-            </div>
-          </div>
         </div>
       </div>
       <Chatbot />
