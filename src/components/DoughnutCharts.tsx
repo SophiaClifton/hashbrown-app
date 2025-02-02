@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 // Import the JSON data
-import data from '../dummy_assets/user1.json'; // Adjust the path based on where your data file is located
+import data from '../dummy_assets/budget.json'; // Adjust the path based on where your data file is located
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -11,12 +11,11 @@ const DoughnutCharts: React.FC = () => {
     const [expenseData, setExpenseData] = useState<any[]>([]);
 
     useEffect(() => {
-        // Process transactions into income and expenses
-        const transactions = data.transactions["2025-02"];
         let incomeCategories: any = {};
         let expenseCategories: any = {};
 
-        transactions.forEach(transaction => {
+        // Accessing the transactions from the imported data
+        data.transactions.forEach(transaction => {
             const amount = transaction.amount;
             const category = transaction.category;
 

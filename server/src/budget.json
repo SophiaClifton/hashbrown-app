@@ -1,0 +1,12 @@
+{
+"transactions": [
+    {
+      "name": "salary",
+      "category":"personal",
+      "type": "income",
+      "recurrence": "daily",
+      "amount": 1000.00
+    }
+  ]
+  }
+    
