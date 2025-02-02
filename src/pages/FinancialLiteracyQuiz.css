@@ -152,3 +152,102 @@
   border-color: transparent #a8e0ff transparent transparent;
   pointer-events: none;
 }
+
+/* Add these new styles */
+.quiz-question-bubble {
+  position: relative;
+  background: linear-gradient(135deg, #e6f7ff 0%, #ffffff 100%);
+  border-radius: 20px;
+  padding: 25px;
+  max-width: 800px;
+  box-shadow: 0 4px 15px rgba(0, 149, 255, 0.1);
+  border: 2px solid #a8e0ff;
+  margin-top: 40px;
+}
+
+.quiz-question-bubble::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 30px;
+  border-style: solid;
+  border-width: 15px 20px 15px 0;
+  border-color: transparent #a8e0ff transparent transparent;
+  pointer-events: none;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.quiz-option {
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+  border: 2px solid #d1e9ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 149, 255, 0.15);
+  border-color: #a8e0ff;
+}
+
+.feedback-message {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.feedback-message.correct {
+  background-color: rgba(72, 187, 120, 0.1);
+  border: 2px solid #48bb78;
+  color: #2f855a;
+}
+
+.feedback-message.incorrect {
+  background-color: rgba(245, 101, 101, 0.1);
+  border: 2px solid #f56565;
+  color: #c53030;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add wave animation for options */
+.quiz-option::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #a8e0ff, #d1e9ff, #a8e0ff);
+  animation: wave 2s infinite linear;
+  opacity: 0.5;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
