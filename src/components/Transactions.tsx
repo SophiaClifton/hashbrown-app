@@ -49,7 +49,8 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
   const { user } = useSession();
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`${API_URL}transactions/delete_transaction?id=${user.id}`, {
+      console.log("Deleting transaction at:", `${API_URL}transactions/delete_transaction/${id}`);
+      const response = await fetch(`${API_URL}transactions/delete_transaction/${id}`, {
         method: "DELETE"
       });
   

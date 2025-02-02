@@ -25,22 +25,27 @@ const Income_and_expenses: React.FC = () => {
         const API_URL = process.env.REACT_APP_API_URL || ""; // Load from .env
         const fetchTransactions = async () => {
             try {
-                const response = await fetch(`${API_URL}transactions/get_transactions_by_user?user_id=${user.id}`);
+                const response = await fetch(`${API_URL}transactions/get_transactions_by_user/${user.id}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch transactions");
                 }
-                const data: Transaction[] = await response.json();
+                const data = await response.json();
+                console.log(data);
+                
+                // Ensure data is an array before setting state
+                if (!Array.isArray(data)) {
+                    throw new Error("Invalid data format: Expected an array");
+                }
+        
                 console.log("Fetched transactions:", data);
                 setTransactions(data);
-                console.log("jkajkae");
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching transactions:", error);
+                setTransactions([]); // Fallback to an empty array
             }
-        };
-
-        fetchTransactions();
-    }, []); // Runs only once when component mounts
+        };fetchTransactions();        
+    }, []);
+     // Runs only once when component mounts
 
     const addTransaction = (newTransaction: Transaction) => {
         // Keep the original category instead of overwriting it with description
@@ -50,9 +55,11 @@ const Income_and_expenses: React.FC = () => {
         setTransactions(prev => [...prev, formattedTransaction]);
     };
 
-    const deleteTransaction = (id: string) => {
+    
+    const deleteTransaction = (id: string): void => {
         setTransactions(prev => prev.filter(transaction => transaction.id !== id));
-    };
+    };    
+
 
     const readMessage = () => {
         if (isReading) {
