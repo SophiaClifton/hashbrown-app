@@ -25,11 +25,17 @@ body.dark-mode .quiz-container {
 }
 
 .fin-avatar-placeholder {
-  width: 100px;
-  height: 100px;
-  background-color: rgba(0, 149, 255, 0.1);
-  border-radius: 50%;
+  width: 200px;
+  height: 400px;
+  border-radius: 20px;
   flex-shrink: 0;
+  background: url('/standing.png') center/contain no-repeat;
+  transition: background-image 0.3s ease;
+}
+
+/* Add style for incorrect answers */
+.fin-avatar-placeholder.incorrect {
+  background: url('/wrong.png') center/contain no-repeat;
 }
 
 .fin-message-bubble {

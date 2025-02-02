@@ -107,6 +107,20 @@ const FinancialLiteracyQuiz: React.FC = () => {
   const getFeedbackMessage = () => {
     if (!selectedAnswer) return null;
 
+    // Add this helper function at the start of getFeedbackMessage
+    const isCorrectAnswer = (currentQuestion === 1 && selectedAnswer === 'B') ||
+                           (currentQuestion >= 2 && currentQuestion <= 6 && selectedAnswer === 'A');
+
+    // Add a class to the avatar placeholder when answer is incorrect
+    const avatarPlaceholder = document.querySelector('.fin-avatar-placeholder');
+    if (avatarPlaceholder) {
+      if (!isCorrectAnswer) {
+        avatarPlaceholder.classList.add('incorrect');
+      } else {
+        avatarPlaceholder.classList.remove('incorrect');
+      }
+    }
+
     if (currentQuestion === 1) {
       if (selectedAnswer === 'B') {
         return (
