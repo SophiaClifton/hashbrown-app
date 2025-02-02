@@ -20,13 +20,13 @@ const Login: React.FC = () => {
 
     try {
       // Updated to use the new API endpoint
-      const response = await fetch(`${API_URL}/verify_user?email=${encodeURIComponent(email)}`);
+      const response = await fetch(`${API_URL}verify_user?email=${encodeURIComponent(email)}`);
       const data = await response.json();
 
       if (response.ok && data.isValid) {
         // Set user data from API response
         setUser({
-          username: data.name,
+          username: data.username,
           id: data.id,
           email: data.email
         });
