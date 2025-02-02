@@ -7,12 +7,15 @@ import userData from "../dummy_assets/user1.json"; // Import user data
 
 const Transactions: React.FC = () => {
     return (
-        <div className="transactions-container">
+        <div>
             <Banner />
-            <div className="content">
+            <div className="transactions-container">
+                
                 <Sidebar />
-                <TransactionHistory transactions={userData.transactions} /> {/* Pass only transactions */}
-                <Chatbot />
+                <div className="content">
+                    <TransactionHistory transactions={userData.transactions} /> {/* Pass only transactions */}
+                    <Chatbot />
+                </div>
             </div>
         </div>
     );

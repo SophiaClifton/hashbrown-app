@@ -29,9 +29,6 @@ const ExpandingDebtRectangleList: React.FC<ExpandingDebtRectangleListProps> = ({
               {item.content}
             </div>}
 
-            {expandedIndex === index && <div className="filler">
-            </div>}
-
             {expandedIndex === index && <div className="graph-2">
               {item.content}
             </div>}

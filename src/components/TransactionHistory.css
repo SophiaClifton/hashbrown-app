@@ -1,8 +1,8 @@
 /* General Page Layout */
 .transactions-container {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    flex-direction: row;
+    height: auto;
 }
 
 .content {
@@ -14,7 +14,6 @@
 }
 
 /* Sidebar and Chatbot section styles */
-.Sidebar,
 .Chatbot {
     width: 200px; /* Adjust as needed */
     flex-shrink: 0; /* Prevent them from shrinking */

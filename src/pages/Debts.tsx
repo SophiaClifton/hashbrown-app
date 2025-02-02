@@ -13,12 +13,15 @@ const Debts: React.FC = () => {
     { label: "Car Loan", content: <SimpleAreaGraph/> }
     ];
   return (
-    <div className="debts-container">
-      <Banner />
-      <div className="content">
-        <Sidebar />
-        <ExpandingDebtRectangleList items={items} />
-        <Chatbot />
+    <div> <Banner />
+
+      <div className="debts-container">
+      <Sidebar />
+        <div className="content">
+          
+          <ExpandingDebtRectangleList items={items} />
+          <Chatbot />
+        </div>
       </div>
     </div>
   );
