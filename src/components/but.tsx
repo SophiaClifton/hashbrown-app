@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RequestButton: React.FC = () => {
+interface Transaction {
+  id: string;
+  type: 'income' | 'expense';
+  amount: number;
+  category: string;
+  date: string;
+}
+
+interface ButtonProps {
+  onAddTransaction: (transaction: Transaction) => void;
+}
+
+const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
     const [response, setResponse] = useState<string | null>(null);
     const [inputValue, setInputValue] = useState<string>(''); // State for user input
     const [type, setType] = useState<string>('expense'); // State for dropdown selection of type
@@ -10,9 +22,23 @@ const RequestButton: React.FC = () => {
     const [formVisible, setFormVisible] = useState<boolean>(false); // State for toggling form visibility
 
     const handleButtonClick = async () => {
-        await sending(inputValue, type, category, amount); // Send inputValue, type, category, and amount to the server
-        resetForm(); // Clear form fields
-        setFormVisible(false); // Close the form after submission
+        // Create a new transaction object
+        const newTransaction: Transaction = {
+            id: Date.now().toString(), // Simple way to generate unique IDs
+            type: type as 'income' | 'expense',
+            amount: Number(amount),
+            category: category,
+            date: new Date().toISOString(),
+        };
+
+        try {
+            await sending(inputValue, type, category, amount);
+            onAddTransaction(newTransaction); // Call the callback with the new transaction
+            resetForm(); // Clear form fields
+            setFormVisible(false); // Close the form after submission
+        } catch (error) {
+            console.error('Error making request:', error);
+        }
     };
 
     const sending = async (value: string, type: string, category: string, amount: number | string) => {
@@ -45,7 +71,7 @@ const RequestButton: React.FC = () => {
                         type="text"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)} // Update inputValue as the user types
-                        placeholder="Enter word"
+                        placeholder="Enter description"
                     />
                     <select
                         value={type}

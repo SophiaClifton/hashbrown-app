@@ -1,16 +1,63 @@
 import React from "react";
 import "./Transactions.css";
 
-const Transactions: React.FC = () => {
+interface Transaction {
+  id: string;
+  type: 'income' | 'expense';
+  amount: number;
+  category: string;
+  date: string;
+}
+
+interface TransactionsProps {
+  transactions: Transaction[];
+}
+
+const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
+  const incomeTransactions = transactions.filter(t => t.type === 'income');
+  const expenseTransactions = transactions.filter(t => t.type === 'expense');
+
+  const formatAmount = (amount: number) => {
+    return new Intl.NumberFormat('en-CA', {
+      style: 'currency',
+      currency: 'CAD'
+    }).format(amount);
+  };
+
   return (
     <div className="transactions-container">
       <div className="income">
-        <h2>Income</h2>
-        {/* Add income transactions here */}
+        <div className="transaction-header">
+          <h2>Income</h2>
+          <span>💰</span>
+        </div>
+        <div className="transaction-list">
+          {incomeTransactions.map(transaction => (
+            <div key={transaction.id} className="transaction-item">
+              <span>{transaction.category}</span>
+              <span className="transaction-amount">
+                {formatAmount(transaction.amount)}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
+      
       <div className="expenses">
-        <h2>Expenses</h2>
-        {/* Add expense transactions here */}
+        <div className="transaction-header">
+          <h2>Expenses</h2>
+          <span>💸</span>
+        </div>
+        <div className="transaction-list">
+          {expenseTransactions.map(transaction => (
+            <div key={transaction.id} className="transaction-item">
+              <span>{transaction.category}</span>
+              <span className="transaction-amount">
+                {formatAmount(transaction.amount)}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
