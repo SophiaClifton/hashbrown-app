@@ -211,6 +211,7 @@
   background-color: rgba(72, 187, 120, 0.1);
   border: 2px solid #48bb78;
   color: #2f855a;
+  position: relative;
 }
 
 .feedback-message.incorrect {
@@ -336,3 +337,25 @@
 }
 
 /* Keep existing wave-animation keyframes */
+
+/* Add these new styles for the happy dolphin */
+.happy-dolphin-container {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  animation: happy-dolphin-entrance 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes happy-dolphin-entrance {
+  0% {
+    opacity: 0;
+    transform: translate(50px, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
