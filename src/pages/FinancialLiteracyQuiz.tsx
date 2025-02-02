@@ -67,11 +67,15 @@ const FinancialLiteracyQuiz: React.FC = () => {
   };
 
   const resetQuiz = () => {
+    // Reset all state
     setSelectedAnswer(null);
     setQuizStarted(false);
     setCurrentQuestion(1);
     setAttempts({});
     setShowResults(false);
+    
+    // Refresh the page
+    window.location.reload();
   };
 
   const getFeedbackMessage = () => {
@@ -257,6 +261,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
               <li>C. High-Risk Cryptocurrency Portfolio: Volatile assets may exceed Noah's moderate risk tolerance, and large swings could jeopardize his long-term savings.</li>
               <li>D. Chequing Account: Earns little to no interest, meaning inflation would erode purchasing power over time.</li>
             </ul>
+            <button 
+              className="start-button" 
+              onClick={resetQuiz}
+              style={{ marginTop: '20px' }}
+            >
+              Restart Quiz
+            </button>
           </div>
         );
       } else {
@@ -265,6 +276,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
             <h3>Incorrect Answer</h3>
             <p>The correct answer is A. A Balanced Mutual Fund or ETF through a TFSA.</p>
             <p>A balanced fund or ETF typically holds a mix of stocks and bonds, aligning with moderate risk tolerance. Holding this within a TFSA offers tax-free growth. Over 10+ years, this approach can provide a reasonable balance between growth and risk.</p>
+            <button 
+              className="start-button" 
+              onClick={resetQuiz}
+              style={{ marginTop: '20px' }}
+            >
+              Restart Quiz
+            </button>
           </div>
         );
       }
