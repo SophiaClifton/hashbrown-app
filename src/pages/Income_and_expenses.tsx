@@ -5,6 +5,7 @@ import Button from "../components/but";
 import { DoughnutCharts } from "../components/DoughnutCharts";
 import Transactions from "../components/Transactions";
 import "./Income_and_expenses.css"
+import { useSession } from '../components/SessionProvider';
 
 interface Transaction {
   id: string;
@@ -18,6 +19,28 @@ interface Transaction {
 const Income_and_expenses: React.FC = () => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [isReading, setIsReading] = useState(false);
+    const { user } = useSession();
+
+    useEffect(() => {
+        const API_URL = process.env.REACT_APP_API_URL || ""; // Load from .env
+        const fetchTransactions = async () => {
+            try {
+                const response = await fetch(`${API_URL}transactions/get_transactions_by_user?user_id=${user.id}`);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch transactions");
+                }
+                const data: Transaction[] = await response.json();
+                console.log("Fetched transactions:", data);
+                setTransactions(data);
+                console.log("jkajkae");
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching transactions:", error);
+            }
+        };
+
+        fetchTransactions();
+    }, []); // Runs only once when component mounts
 
     const addTransaction = (newTransaction: Transaction) => {
         // Keep the original category instead of overwriting it with description

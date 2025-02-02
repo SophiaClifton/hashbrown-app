@@ -4,7 +4,25 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 // Import the JSON data
 import data from '../dummy_assets/budget.json'; // Adjust the path based on where your data file is located
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS_INCOME = [
+    '#33FF57',  // 
+    '#00CED1',  // 
+    '#4CAF50',  // 
+    '#2E8B57',  // 
+    '#32CD32',  // 
+    '#228B22',  // 
+    '#66CDAA'   // 
+];
+
+const COLORS_EXPENSE = [
+    '#FF5733',  // 
+    '#D84315',  // 
+    '#FF7043',  // 
+    '#E53935',  // 
+    '#B71C1C',  // 
+    '#F44336',  // 
+    '#C62828'   //
+];
 
 export type CategoryColorMap = {
   [category: string]: string;
@@ -33,27 +51,34 @@ const DoughnutCharts: React.FC<DoughnutChartsProps> = ({ transactions }) => {
         let incomeCategories: any = {};
         let expenseCategories: any = {};
         let newCategoryColorMap: CategoryColorMap = {};
-        let colorIndex = 0;
+        let incomeColorIndex = 0;
+        let expenseColorIndex = 0;
 
+        
         transactions.forEach(transaction => {
             const amount = transaction.amount;
             const category = transaction.category;
-            const type = transaction.type;
+            const type = transaction.type.toLowerCase();
 
-            // Assign color if category doesn't have one yet
-            if (!newCategoryColorMap[category]) {
-                newCategoryColorMap[category] = COLORS[colorIndex % COLORS.length];
-                colorIndex++;
-            }
-
-            if (type === "income" && amount > 0) {
-                incomeCategories[category] = (incomeCategories[category] || 0) + amount;
-            } else if (type === "expense" && amount > 0) {
+            if (type === "expense") {
                 expenseCategories[category] = (expenseCategories[category] || 0) + amount;
+    
+                
+                if (!newCategoryColorMap[category]) {
+                    newCategoryColorMap[category] = COLORS_EXPENSE[expenseColorIndex % COLORS_EXPENSE.length];
+                    expenseColorIndex++;
+                }
+            } else if (type === "income") {
+                incomeCategories[category] = (incomeCategories[category] || 0) + amount;
+    
+                
+                if (!newCategoryColorMap[category]) {
+                    newCategoryColorMap[category] = COLORS_INCOME[incomeColorIndex % COLORS_INCOME.length];
+                    incomeColorIndex++;
+                }
             }
         });
-
-        // Update the category color map
+    
         setCategoryColorMap(newCategoryColorMap);
 
         // Convert object to array for rendering
@@ -62,12 +87,15 @@ const DoughnutCharts: React.FC<DoughnutChartsProps> = ({ transactions }) => {
             value: incomeCategories[category],
             color: newCategoryColorMap[category]
         }));
+        
 
         const expenseArr = Object.keys(expenseCategories).map(category => ({
             name: category,
-            value: expenseCategories[category],
+            value: -1*expenseCategories[category],
             color: newCategoryColorMap[category]
         }));
+
+        console.log("Setting Expense Data:", expenseArr);
 
         setIncomeData(incomeArr);
         setExpenseData(expenseArr);
@@ -128,4 +156,4 @@ const DoughnutCharts: React.FC<DoughnutChartsProps> = ({ transactions }) => {
     );
 };
 
-export { DoughnutCharts, COLORS };
+export { DoughnutCharts, COLORS_INCOME,COLORS_EXPENSE };

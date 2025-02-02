@@ -1,6 +1,6 @@
 import React from "react";
 import "./Transactions.css";
-import { COLORS } from "./DoughnutCharts"; // Import the colors
+import { COLORS_INCOME, COLORS_EXPENSE } from "./DoughnutCharts"; // Import the colors
 
 interface Transaction {
   id: string;
@@ -20,15 +20,22 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
   const incomeTransactions = transactions.filter(t => t.type === 'income');
   const expenseTransactions = transactions.filter(t => t.type === 'expense');
 
-  // Create a map of categories to colors
+  console.log("Expense Transactions:", expenseTransactions);
+
+  // Create a map of categories to colors, separately for income and expense
   const categoryColorMap: { [key: string]: string } = {};
-  let colorIndex = 0;
-  
-  // First pass to assign colors consistently
+  let incomeColorIndex = 0;
+  let expenseColorIndex = 0;
+
   transactions.forEach(transaction => {
     if (!categoryColorMap[transaction.category]) {
-      categoryColorMap[transaction.category] = COLORS[colorIndex % COLORS.length];
-      colorIndex++;
+      if (transaction.type === "income") {
+        categoryColorMap[transaction.category] = COLORS_INCOME[incomeColorIndex % COLORS_INCOME.length];
+        incomeColorIndex++;
+      } else {
+        categoryColorMap[transaction.category] = COLORS_EXPENSE[expenseColorIndex % COLORS_EXPENSE.length];
+        expenseColorIndex++;
+      }
     }
   });
 
