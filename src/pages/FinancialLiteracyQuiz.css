@@ -39,9 +39,14 @@ body.dark-mode .quiz-container {
   transition: background-image 0.3s ease;
 }
 
-/* Add style for incorrect answers */
+/* Style for incorrect answers */
 .fin-avatar-placeholder.incorrect {
   background: url('/wrong.png') center/contain no-repeat;
+}
+
+/* Add style for correct answers */
+.fin-avatar-placeholder.correct {
+  background: url('/good.png') center/contain no-repeat;
 }
 
 .fin-message-bubble {

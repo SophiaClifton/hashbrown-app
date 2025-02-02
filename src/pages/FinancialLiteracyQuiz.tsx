@@ -115,7 +115,9 @@ const FinancialLiteracyQuiz: React.FC = () => {
     if (avatarPlaceholder) {
       if (!isCorrectAnswer) {
         avatarPlaceholder.classList.add('incorrect');
+        avatarPlaceholder.classList.remove('correct');
       } else {
+        avatarPlaceholder.classList.add('correct');
         avatarPlaceholder.classList.remove('incorrect');
       }
     }
