@@ -16,28 +16,29 @@ html, body {
 
 .chatbot-status {
   position: fixed;
-  bottom: 90px;  /* Adjust this value based on your chatbot bubble size */
+  bottom: 100px;
   right: 30px;
-  background-color: #2a9d8f; /* Keep this color constant for both modes */
-  padding: 10px 20px;
-  border-radius: 20px;
+  background-color: #2a9d8f;
+  padding: 15px 25px;
+  border-radius: 25px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  gap: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
   z-index: 1001;
+  transform: scale(1.2);
 }
 
 .status-text {
-  color: white; /* Keep text white in both modes */
-  font-size: 14px;
-  font-weight: 500;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .status-indicator {
-  width: 10px;
-  height: 10px;
-  background-color: #2ecc71; /* Keep the green color constant */
+  width: 14px;
+  height: 14px;
+  background-color: #2ecc71;
   border-radius: 50%;
   display: inline-block;
   animation: pulse 1s infinite;
