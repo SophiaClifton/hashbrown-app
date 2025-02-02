@@ -5,30 +5,32 @@ import Transactions from './pages/Transactions';
 import Income_and_expenses from './pages/Income_and_expenses';
 import Home from './pages/Home';
 import Debts from './pages/Debts';
+import FinancialLiteracyQuiz from './pages/FinancialLiteracyQuiz';
 
 const App: React.FC = () => {
   return (
     <Router>
-  <div>
-    {/* Common elements */}
-    
+      <div>
+        {/* Common elements */}
+        
 
-    <Routes>
-      {/* Home route */}
-      <Route index element={<Home />} />
+        <Routes>
+          {/* Home route */}
+          <Route index element={<Home />} />
 
-      {/* Transactions page route */}
-      <Route path="/transactions" element={<Transactions />} />
+          {/* Transactions page route */}
+          <Route path="/transactions" element={<Transactions />} />
 
-      {/* Income and expenses page route */}
-      <Route path="/income_and_expenses" element={<Income_and_expenses />} />
+          {/* Income and expenses page route */}
+          <Route path="/income_and_expenses" element={<Income_and_expenses />} />
 
-      <Route path="/debts" element={<Debts />} />
+          <Route path="/debts" element={<Debts />} />
 
-    </Routes>
-  </div>
-</Router>
+          <Route path="/financial-literacy-quiz" element={<FinancialLiteracyQuiz />} />
 
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

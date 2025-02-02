@@ -32,6 +32,9 @@ const Sidebar: React.FC = () => {
             <li className="sub"><a href="#product-comparison">Product Comparison</a></li>
           </ul>
         </li>
+        <li className="sub">
+          <Link to="/financial-literacy-quiz">Financial Literacy Quiz</Link>
+        </li>
       </ul>
     </div>
   );
