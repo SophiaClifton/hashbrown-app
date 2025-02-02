@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Banner from "../components/Banner";
-import Sidebar from "../components/Sidebar";
 import Chatbot from "../components/Chatbot";
 import "./FinancialLiteracyQuiz.css";
 
@@ -402,7 +401,6 @@ const FinancialLiteracyQuiz: React.FC = () => {
     <div>
       <Banner />
       <div className="quiz-container">
-        <Sidebar />
         <div className="quiz-content">
           <div className="fin-message-container">
             <div className="fin-avatar-placeholder">

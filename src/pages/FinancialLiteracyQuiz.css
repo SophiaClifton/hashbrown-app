@@ -1,13 +1,13 @@
 .quiz-container {
-  display: flex;
-  flex-direction: row;
+  padding-top: 80px; /* Add space for fixed banner */
   min-height: 100vh;
+  background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 100%);
 }
 
 .quiz-content {
-  flex: 1;
-  padding: 20px;
-  background: linear-gradient(180deg, #e6f7ff 0%, #ffffff 100%);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .fin-message-container {
