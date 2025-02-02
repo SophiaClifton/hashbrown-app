@@ -1,12 +1,18 @@
 {
-"transactions": [
+  "transactions": [
     {
       "name": "salary",
-      "category":"personal",
+      "category": "personal",
       "type": "income",
       "recurrence": "daily",
       "amount": 1000.00
+    },
+    {
+      "name": "freelance work",
+      "category": "personal",
+      "type": "expense",
+      "recurrence": "weekly",
+      "amount": 500.00
     }
   ]
-  }
-    
+}

@@ -5,18 +5,44 @@
     height: auto;
 }
 
+/* Main content area */
 .main-content {
+    background-color: black;
+    position: relative;
     padding: 10px 30px;
     top: 0;
     display: flex;
     justify-content: top;  /* Keep the chart centered horizontally */
-    align-items: flex-start;  /* Align the chart to the top of the div */
+    align-items: center;  /* Align the chart to the top of the div */
     flex-direction: column;   /* Ensure the charts and any other content align vertically */
+    width: 100%;  /* Take up full width since there's no sidebar */
+    margin: 0 auto;
 }
 
 /* Optional: Style for the DoughnutCharts component */
 .main-content .DoughnutCharts {
     max-width: 500px;   /* Limit the max width of the charts */
     width: 100%;        /* Ensure it uses the available space */
+    margin: 0 auto;
 }
 
+/* Container for the doughnut charts */
+.chartsbetween-container {
+    display: flex;
+    justify-content: space-;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Each chart */
+.chart {
+    width: 45%;
+    margin: 0 auto;
+}
+
+/* Optional: Adjust the chart header styling */
+.chart h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
