@@ -10,7 +10,9 @@ const RequestButton: React.FC = () => {
     const [formVisible, setFormVisible] = useState<boolean>(false); // State for toggling form visibility
 
     const handleButtonClick = async () => {
-        sending(inputValue, type, category, amount); // Send inputValue, type, category, and amount to the server
+        await sending(inputValue, type, category, amount); // Send inputValue, type, category, and amount to the server
+        resetForm(); // Clear form fields
+        setFormVisible(false); // Close the form after submission
     };
 
     const sending = async (value: string, type: string, category: string, amount: number | string) => {
@@ -22,8 +24,15 @@ const RequestButton: React.FC = () => {
         }
     };
 
+    const resetForm = () => {
+        setInputValue('');
+        setType('expense');
+        setCategory('personal');
+        setAmount('');
+    };
+
     return (
-        <div>
+        <div style={containerStyle}>
             {/* Plus button to toggle the form visibility */}
             <button onClick={() => setFormVisible(!formVisible)} style={buttonStyle}>
                 {formVisible ? 'Close' : '+'}
@@ -63,21 +72,20 @@ const RequestButton: React.FC = () => {
                     <button onClick={handleButtonClick}>Add</button>
                 </div>
             )}
-
-            {/* Display the response from the server */}
         </div>
     );
 };
 
-// Styles for the button and the form
+// Styles for the button, form, and container
 const buttonStyle: React.CSSProperties = {
-    fontSize: '20px',
-    padding: '10px',
+    fontSize: '30px',
+    padding: '10px 20px',
     backgroundColor: '#4CAF50',
     color: 'white',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '50px',
     cursor: 'pointer',
+    marginBottom: '10px', // Add some space below the button
 };
 
 const formStyle: React.CSSProperties = {
@@ -86,6 +94,15 @@ const formStyle: React.CSSProperties = {
     backgroundColor: '#f1f1f1',
     borderRadius: '5px',
     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+};
+
+const containerStyle: React.CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column', // Stack elements vertically
+    alignItems: 'center', // Center horizontally
+    justifyContent: 'flex-start', // Align to the top of the container
+    height: '100vh', // Full viewport height
+    paddingTop: '10px', // Add padding at the top for spacing
 };
 
 export default RequestButton;

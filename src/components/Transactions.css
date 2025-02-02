@@ -1,0 +1,15 @@
+.transactions-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: brown;
+  }
+  
+  .income, .expenses {
+    width: 45%;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  

@@ -11,20 +11,22 @@ const DoughnutCharts: React.FC = () => {
     const [expenseData, setExpenseData] = useState<any[]>([]);
 
     useEffect(() => {
+        // Process transactions into income and expenses
+        const transactions = data.transactions;
         let incomeCategories: any = {};
         let expenseCategories: any = {};
 
-        // Accessing the transactions from the imported data
-        data.transactions.forEach(transaction => {
+        transactions.forEach(transaction => {
             const amount = transaction.amount;
             const category = transaction.category;
+            const type = transaction.type;
 
-            if (amount > 0) {
+            if (type === "income" && amount > 0) {
                 // Income
                 incomeCategories[category] = (incomeCategories[category] || 0) + amount;
-            } else {
+            } else if (type === "expense" && amount > 0) {
                 // Expense
-                expenseCategories[category] = (expenseCategories[category] || 0) + Math.abs(amount);
+                expenseCategories[category] = (expenseCategories[category] || 0) + amount;
             }
         });
 
