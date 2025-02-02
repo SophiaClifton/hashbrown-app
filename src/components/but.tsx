@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSession } from './SessionProvider';
 
@@ -24,15 +24,33 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
     const [amount, setAmount] = useState<number | string>('');
     const [formVisible, setFormVisible] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
-    // Move styles inside component to access formVisible state
+    useEffect(() => {
+        setIsDarkMode(document.body.classList.contains('dark-mode'));
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    setIsDarkMode(document.body.classList.contains('dark-mode'));
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            attributes: true
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     const containerStyle: React.CSSProperties = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
         padding: '20px 0',
-        backgroundColor: 'white',
+        backgroundColor: isDarkMode ? '#2d3748' : 'white',
         borderRadius: '12px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.05)',
         marginBottom: '20px',
@@ -56,7 +74,7 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
         width: '100%',
         maxWidth: '800px',
         padding: '15px',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: isDarkMode ? '#1a202c' : '#f8f9fa',
         borderRadius: '8px',
     };
 
