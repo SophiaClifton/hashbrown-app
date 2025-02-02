@@ -41,11 +41,9 @@ const Income_and_expenses: React.FC = () => {
         setIsReading(true);
         const message = `Hey there! Ready to make a splash with your finances? 🌊
 
-        Use the add bar below to record your income and expenses. Just click the plus button and fill in the details - it's as easy as riding a wave! 
+        Make sure to enter you financial goals in the budget text-box bellow. Then, use the add button below to record your sources of income and expenses. Just click the plus button and fill in the details - it's as easy as riding a wave! 
 
-        Remember to categorize each transaction properly so we can track where your money is swimming to. This helps us create those neat pie charts you see below!
-
-        Keep an eye on your spending and make sure it aligns with your financial goals. If you need any help, I'm just a click away in the chat bubble! 🐬`;
+        Remember to categorize each transaction properly so we can track where your money is swimming to. Once all entries are filled, click the copy-paste buttton besides the budget text-box, and paste the genrated prompt in my chat bubble. Remember, I'm just a click away! 🐬`;
 
         const utterance = new SpeechSynthesisUtterance(message);
         utterance.onend = () => setIsReading(false);
@@ -106,9 +104,10 @@ const Income_and_expenses: React.FC = () => {
                             <div className="water-drop"></div>
                         </div>
                         <p>Hey there! Ready to make a splash with your finances? 🌊</p>
-                        <p>Use the add bar below to record your income and expenses. Just click the plus button and fill in the details - it's as easy as riding a wave!</p>
-                        <p>Remember to categorize each transaction properly so we can track where your money is swimming to. This helps us create those neat pie charts you see below!</p>
-                        <p>Keep an eye on your spending and make sure it aligns with your financial goals. If you need any help, I'm just a click away in the chat bubble! 🐬</p>
+                        <p>Make sure to enter you financial goals in the budget text-box bellow.</p>
+                        <p>Then, use the add button below to record your sources of income and expenses. Just click the plus button and fill in the details - it's as easy as riding a wave!</p>
+                        <p>Remember to categorize each transaction properly so we can track where your money is swimming to.</p> 
+                        <p> Once all entries are filled, click the copy-paste buttton besides the budget text-box, and paste the genrated prompt in my chat bubble. Remember, I'm just a click away! 🐬</p>
                     </div>
                 </div>
                 <div className="context-input-container">

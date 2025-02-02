@@ -21,6 +21,7 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
     const [category, setCategory] = useState<string>('personal');
     const [amount, setAmount] = useState<number | string>('');
     const [formVisible, setFormVisible] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
 
     // Move styles inside component to access formVisible state
     const containerStyle: React.CSSProperties = {
@@ -65,6 +66,12 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
     };
 
     const handleButtonClick = async () => {
+        if (!inputValue.trim() || !category || amount === '' || Number(amount) <= 0) {
+            setError('All fields must be filled, and the amount must be greater than 0.');
+            return;
+        }
+
+        setError(null); // Clear previous errors
         const newTransaction: Transaction = {
             id: Date.now().toString(),
             type: type as 'income' | 'expense',
@@ -103,6 +110,7 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
         setType('expense');
         setCategory('personal');
         setAmount('');
+        setError(null);
     };
 
     return (
@@ -143,7 +151,7 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
-                        placeholder="Amount"
+                        placeholder="Monthly amount"
                     />
                     <button 
                         onClick={handleButtonClick}
