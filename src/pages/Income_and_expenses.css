@@ -324,3 +324,9 @@ body.dark-mode .add-bar-indicator {
 body.dark-mode .indicator-text {
     color: #e2e8f0;
 }
+
+.context-input-container label {
+    color: #2c5282;
+    margin-bottom: 8px;
+    font-weight: 500;
+}

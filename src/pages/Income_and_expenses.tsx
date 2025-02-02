@@ -112,9 +112,11 @@ const Income_and_expenses: React.FC = () => {
                     </div>
                 </div>
                 <div className="context-input-container">
+                    <label htmlFor="context-textarea">Enter your budgeting context:</label>
                     <textarea
+                        id="context-textarea"
                         className="context-textarea"
-                        placeholder="Enter your budgeting context here..."
+                        placeholder="Example: Trying to save $2000 for family vacation"
                         aria-label="Budgeting context input"
                     />
                     <button 
