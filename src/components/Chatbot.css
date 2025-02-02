@@ -9,7 +9,7 @@
   position: fixed;
   bottom: 90px;  /* Adjust this value based on your chatbot bubble size */
   right: 30px;
-  background-color: #7990b5;  /* Same as banner color */
+  background-color: #2a9d8f; /* Darker aquamarine color */
   padding: 10px 20px;
   border-radius: 20px;
   display: flex;
