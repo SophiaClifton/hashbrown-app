@@ -12,14 +12,10 @@ const Banner: React.FC = () => {
         </Link>
         
         <nav className="banner-nav">
-          <div 
-            className="nav-item dropdown"
-          >
-            <span className="nav-link">
-              Managing Finances
-              <span className="dropdown-arrow">▾</span>
-            </span>
-          </div>
+          <Link to="/income_and_expenses" className="nav-item">
+            <span className="nav-icon">📊</span>
+            Income & Expenses
+          </Link>
           
           <Link to="/financial-literacy-quiz" className="nav-item">
             <span className="nav-icon">🎯</span>
