@@ -142,4 +142,13 @@
     transform: translateY(0px);
   }
 }
+
+.user-content{
+  color: white;
+}
+
+.logout-content{
+  text-decoration: none;
+  color: white;
+}
   

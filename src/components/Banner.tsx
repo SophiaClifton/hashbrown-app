@@ -12,13 +12,7 @@ const Banner: React.FC = () => {
           <span className="logo-text">Finsurance</span>
         </Link>
 
-        <div className="User-content">
-          <User_component/>
-        </div>
-
-        <Link to="/logout">
-        <span> Logout </span>
-        </Link>
+        
         
         <nav className="banner-nav">
           <Link to="/income_and_expenses" className="nav-item">
@@ -29,6 +23,14 @@ const Banner: React.FC = () => {
           <Link to="/financial-literacy-quiz" className="nav-item">
             <span className="nav-icon">🎯</span>
             Financial Quiz
+          </Link>
+
+          <div className="user-content">
+          <User_component/>
+          </div>
+
+          <Link to="/logout">
+          <span className="logout-content"> Logout </span>
           </Link>
         </nav>
       </div>
