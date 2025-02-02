@@ -6,13 +6,25 @@ import data from '../dummy_assets/budget.json'; // Adjust the path based on wher
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-const DoughnutCharts: React.FC = () => {
+interface Transaction {
+  id: string;
+  type: 'income' | 'expense';
+  amount: number;
+  category: string;
+  date: string;
+  description: string;
+}
+
+interface DoughnutChartsProps {
+  transactions: Transaction[];
+}
+
+const DoughnutCharts: React.FC<DoughnutChartsProps> = ({ transactions }) => {
     const [incomeData, setIncomeData] = useState<any[]>([]);
     const [expenseData, setExpenseData] = useState<any[]>([]);
 
     useEffect(() => {
         // Process transactions into income and expenses
-        const transactions = data.transactions;
         let incomeCategories: any = {};
         let expenseCategories: any = {};
 
@@ -43,7 +55,7 @@ const DoughnutCharts: React.FC = () => {
 
         setIncomeData(incomeArr);
         setExpenseData(expenseArr);
-    }, []);
+    }, [transactions]); // Update when transactions change
 
     return (
         <div className="charts-container" style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>

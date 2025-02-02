@@ -42,7 +42,7 @@ const Income_and_expenses: React.FC = () => {
                 <div className="main-content">
                     <Button onAddTransaction={addTransaction} />
                     <div className="charts-container">
-                        <DoughnutCharts />
+                        <DoughnutCharts transactions={transactions} />
                     </div>
                     <Transactions transactions={transactions} />
                 </div>
