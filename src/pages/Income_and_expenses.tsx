@@ -125,6 +125,11 @@ const Income_and_expenses: React.FC = () => {
                         📋 Copy Context & Transactions
                     </button>
                 </div>
+                <div className="add-bar-indicator">
+                    <span className="indicator-arrow">⬇️</span>
+                    <span className="indicator-text">Add your income and expenses here</span>
+                    <span className="indicator-arrow">⬇️</span>
+                </div>
                 <div className="main-content">
                     <Button onAddTransaction={addTransaction} />
                     <div className="charts-container">

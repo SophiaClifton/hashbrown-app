@@ -284,3 +284,43 @@ body.dark-mode .context-textarea:focus {
 body.dark-mode .copy-button {
     background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
 }
+
+/* Add this near your other styles */
+.add-bar-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    color: #2c5282;
+    font-size: 1.1em;
+    animation: bounce 2s infinite;
+}
+
+.indicator-text {
+    color: #2c5282;
+    font-weight: 500;
+}
+
+.indicator-arrow {
+    font-size: 1.2em;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Add dark mode support */
+body.dark-mode .add-bar-indicator {
+    color: #e2e8f0;
+}
+
+body.dark-mode .indicator-text {
+    color: #e2e8f0;
+}
