@@ -85,14 +85,14 @@ const Home: React.FC = () => {
                 <div className="water-drop"></div>
                 <div className="water-drop"></div>
               </div>
-              <p>Cowabunga! 🤙 Fin the FinTech Dolphin here, welcoming you aboard our financial well-being site! 🌊🐬</p>
+              <p>Cowabunga! 🤙 Fin the FinTech Dolphin here, welcoming you aboard our financial well-being site! 🐬</p>
               <p>Get ready to ride the tidal wave of knowledge with our fin-tastic resources. Here's the scoop:</p>
               <ul>
                 <li><strong>Income & Expenses Page</strong> – Dive into your personal finances by recording your income and expenses. Once you've filled in your data, feed it to me in our chatbot, and I'll flip some splashy ideas your way on how to invest and plan better!</li>
                 <li><strong>Fin-tastic Quiz</strong> – Test your money smarts with our fin-tastic quiz specially made for finance enthusiasts. It's packed with real-life Canadian finance scenarios—just like a guided swim through the reef of RRSPs, TFSAs, and more!</li>
               </ul>
               <p>If you ever feel lost at sea, just click the chat button at the bottom-right corner, and yours truly will pop up with real-time advice. Let's make waves together and keep your finances afloat!</p>
-              <p>Surf's up, friends! 🌊🐬</p>
+              <p>Surf's up, friends! 🌊</p>
             </div>
           </div>
         </div>
