@@ -2,6 +2,13 @@
   padding-top: 80px; /* Add space for fixed banner */
   min-height: 100vh;
   background: linear-gradient(180deg, #E3F2FD 0%, #FFFFFF 100%);
+  transition: background 0.3s ease; /* Add smooth transition */
+}
+
+/* Add dark mode styles for the quiz container */
+body.dark-mode .quiz-container {
+  background: linear-gradient(180deg, #1a202c 0%, #2D3748 100%);
+  color: var(--text-dark);
 }
 
 .quiz-content {
@@ -450,4 +457,80 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Update message bubble styles for dark mode */
+body.dark-mode .fin-message-bubble {
+  background: linear-gradient(135deg, #2D3748 0%, #1a202c 100%);
+  border-color: #4A5568;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .fin-message-bubble p,
+body.dark-mode .fin-message-bubble ul,
+body.dark-mode .fin-message-bubble li {
+  color: #E2E8F0;
+}
+
+/* Update quiz question bubble for dark mode */
+body.dark-mode .quiz-question-bubble {
+  background: linear-gradient(135deg, #2D3748 0%, #1a202c 100%);
+  border-color: #4A5568;
+}
+
+/* Update quiz options for dark mode */
+body.dark-mode .quiz-option {
+  background: linear-gradient(135deg, #2D3748 0%, #1a202c 100%);
+  border-color: #4A5568;
+  color: #E2E8F0;
+}
+
+body.dark-mode .quiz-option:hover {
+  border-color: #60A5FA;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+}
+
+/* Update feedback messages for dark mode */
+body.dark-mode .feedback-message.correct {
+  background-color: rgba(72, 187, 120, 0.1);
+  border-color: #48BB78;
+  color: #9AE6B4;
+}
+
+body.dark-mode .feedback-message.incorrect {
+  background-color: rgba(245, 101, 101, 0.1);
+  border-color: #F56565;
+  color: #FEB2B2;
+}
+
+/* Update quiz results popup for dark mode */
+body.dark-mode .quiz-results-popup {
+  background: linear-gradient(135deg, #2D3748 0%, #1a202c 100%);
+  border-color: #4A5568;
+  color: #E2E8F0;
+}
+
+body.dark-mode .quiz-results-popup h2,
+body.dark-mode .quiz-results-popup h3,
+body.dark-mode .results-content li {
+  color: #E2E8F0;
+}
+
+body.dark-mode .results-content li {
+  background: rgba(96, 165, 250, 0.1);
+}
+
+/* Update chat bubble pointer for dark mode */
+body.dark-mode .fin-message-bubble::before {
+  border-color: transparent #4A5568 transparent transparent;
+}
+
+body.dark-mode .quiz-question-bubble::before {
+  border-color: transparent #4A5568 transparent transparent;
+}
+
+/* Update start button for dark mode */
+body.dark-mode .start-button {
+  background: linear-gradient(135deg, #3182CE 0%, #2C5282 100%);
+  color: white;
 }
