@@ -1,6 +1,7 @@
 import React from "react";
 import "./Transactions.css";
 import { COLORS_INCOME, COLORS_EXPENSE } from "./DoughnutCharts"; // Import the colors
+import { useSession } from "./SessionProvider";
 
 interface Transaction {
   id: string;
@@ -15,6 +16,9 @@ interface TransactionsProps {
   transactions: Transaction[];
   onDelete: (id: string) => void;
 }
+
+
+
 
 const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) => {
   const incomeTransactions = transactions.filter(t => t.type === 'income');
@@ -38,6 +42,30 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
       }
     }
   });
+
+  const API_URL = process.env.REACT_APP_API_URL || ""; // Load from .env
+
+  const { user } = useSession();
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`${API_URL}transactions/delete_transaction?id=${user.id}`, {
+        method: "DELETE"
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to delete transaction");
+      }
+  
+      console.log(`Transaction ${id} deleted successfully`);
+  
+      // Call onDelete to remove the transaction from the state
+      onDelete(id);
+    } catch (error) {
+      console.error("Error deleting transaction:", error);
+      alert("Failed to delete transaction. Please try again.");
+    }
+  };
+  
 
   const formatAmount = (amount: number) => {
     return new Intl.NumberFormat('en-CA', {
@@ -101,7 +129,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
                 </span>
                 <button 
                   className="delete-button"
-                  onClick={() => onDelete(transaction.id)}
+                  onClick={() => handleDelete(transaction.id)}
                   aria-label="Delete transaction"
                 >
                   ×
