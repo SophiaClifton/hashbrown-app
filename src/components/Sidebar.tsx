@@ -17,19 +17,6 @@ const Sidebar: React.FC = () => {
           <a href="#managing-finances">Managing Finances</a>
           <ul>
             <li className="sub"><Link to="/Income_and_expenses">Income and Expenses</Link></li>
-            
-            <li className="sub"><Link to="/transactions">Transactions</Link></li> {/* Closing Link tag added */}
-          </ul>
-        </li>
-        <li><a href="#investments">Personalized Recommendations</a>
-        <ul>
-            <li className="sub"><a href="#income-expenses">Savings and Investments</a></li>
-            <li className="sub"><a href="#spending-optimizations">Spending Optimizations</a></li>
-          </ul>
-        </li>
-        <li><a href="#insurances">Understanding Financial Products</a>
-        <ul>
-            <li className="sub"><a href="#product-comparison">Product Comparison</a></li>
           </ul>
         </li>
         <li className="sub">
