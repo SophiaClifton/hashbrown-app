@@ -34,7 +34,10 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         <div className="transaction-list">
           {incomeTransactions.map(transaction => (
             <div key={transaction.id} className="transaction-item">
-              <span>{transaction.category}</span>
+              <div className="transaction-details">
+                <span className="transaction-name">{transaction.category}</span>
+                <span className="transaction-type">({transaction.type})</span>
+              </div>
               <span className="transaction-amount">
                 {formatAmount(transaction.amount)}
               </span>
@@ -51,7 +54,10 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
         <div className="transaction-list">
           {expenseTransactions.map(transaction => (
             <div key={transaction.id} className="transaction-item">
-              <span>{transaction.category}</span>
+              <div className="transaction-details">
+                <span className="transaction-name">{transaction.category}</span>
+                <span className="transaction-type">({transaction.type})</span>
+              </div>
               <span className="transaction-amount">
                 {formatAmount(transaction.amount)}
               </span>
