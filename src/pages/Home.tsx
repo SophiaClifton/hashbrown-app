@@ -155,23 +155,8 @@ const Home: React.FC = () => {
 
           {/* Getting Started Section */}
           <div className="getting-started">
-            <h2>Start Your Financial Journey</h2>
+            <h2>Start Your Financial Journey Today :D</h2>
             <div className="steps-container">
-              <div className="step">
-                <div className="step-number">1</div>
-                <h3>Track Transactions</h3>
-                <p>Record your daily income and expenses</p>
-              </div>
-              <div className="step">
-                <div className="step-number">2</div>
-                <h3>Analyze Patterns</h3>
-                <p>View your spending habits through charts</p>
-              </div>
-              <div className="step">
-                <div className="step-number">3</div>
-                <h3>Get Insights</h3>
-                <p>Receive personalized financial advice</p>
-              </div>
             </div>
           </div>
         </div>
