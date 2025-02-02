@@ -9,7 +9,7 @@
   position: fixed;
   bottom: 90px;  /* Adjust this value based on your chatbot bubble size */
   right: 30px;
-  background-color: #2a9d8f; /* Darker aquamarine color */
+  background-color: #2a9d8f; /* Keep this color constant for both modes */
   padding: 10px 20px;
   border-radius: 20px;
   display: flex;
@@ -20,7 +20,7 @@
 }
 
 .status-text {
-  color: white;
+  color: white; /* Keep text white in both modes */
   font-size: 14px;
   font-weight: 500;
 }
@@ -28,7 +28,7 @@
 .status-indicator {
   width: 10px;
   height: 10px;
-  background-color: #2ecc71;
+  background-color: #2ecc71; /* Keep the green color constant */
   border-radius: 50%;
   display: inline-block;
   animation: pulse 1s infinite;
@@ -126,11 +126,11 @@ body.dark-mode {
   }
 }
 
-/* Dark mode adjustments for existing elements */
-body.dark-mode .chatbot-status {
+/* Remove or comment out these dark mode adjustments */
+/* body.dark-mode .chatbot-status {
   background-color: #1e4e8c;
 }
 
 body.dark-mode .status-indicator {
   background-color: #60a5fa;
-} 
+} */ 
