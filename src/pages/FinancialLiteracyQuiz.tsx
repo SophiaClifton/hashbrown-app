@@ -6,9 +6,28 @@ import "./FinancialLiteracyQuiz.css";
 
 const FinancialLiteracyQuiz: React.FC = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [isDolphinsSwimming, setIsDolphinsSwimming] = useState(false);
 
   const handleAnswerClick = (answer: string) => {
     setSelectedAnswer(answer);
+  };
+
+  const handleStartClick = () => {
+    setIsDolphinsSwimming(true);
+    // Add random swim directions for each dolphin
+    const dolphins = document.querySelectorAll('.dolphin');
+    dolphins.forEach((dolphin) => {
+      const swimX = Math.random() * 400 - 200; // Random X between -200 and 200
+      const swimAngle = Math.random() * 60 - 30; // Random angle between -30 and 30 degrees
+      (dolphin as HTMLElement).style.setProperty('--swim-x', `${swimX}px`);
+      (dolphin as HTMLElement).style.setProperty('--swim-angle', `${swimAngle}deg`);
+    });
+    
+    // Delay the quiz start until after animation
+    setTimeout(() => {
+      setQuizStarted(true);
+    }, 1000);
   };
 
   const getFeedbackMessage = () => {
@@ -70,46 +89,64 @@ const FinancialLiteracyQuiz: React.FC = () => {
                 <li>Check the Explanation: I'll let you know which choice makes the biggest splash and why the others might send you off-course.</li>
               </ul>
               <p>So, let's dive right in and test those financial flippers 🥽! I promise not to blow any bubbles here 🫧—just honest, helpful guidance to keep you swimming strong on your journey to financial well-being.</p>
-              <p>Splash away, and happy learning!</p>
-            </div>
-          </div>
-          <div className="fin-message-container">
-            <div className="fin-avatar-placeholder">
-              {/* Placeholder for Fin's avatar */}
-            </div>
-            <div className="quiz-question-bubble">
-              <p>Emily is 22 years old, just graduated, and started her first full-time job with a salary of $40,000. She has $3,000 to invest this year. Emily is in a relatively low tax bracket and expects her income to grow over time. Which account should she prioritize for this $3,000?</p>
               
-              <div className="quiz-options">
-                <div 
-                  className="quiz-option"
-                  onClick={() => handleAnswerClick('A')}
+              <div className="start-button-container">
+                <button 
+                  className="start-button"
+                  onClick={handleStartClick}
+                  disabled={isDolphinsSwimming}
                 >
-                  A. Contribute to her RRSP (Registered Retirement Savings Plan)
-                </div>
-                <div 
-                  className="quiz-option"
-                  onClick={() => handleAnswerClick('B')}
-                >
-                  B. Contribute to her TFSA (Tax-Free Savings Account)
-                </div>
-                <div 
-                  className="quiz-option"
-                  onClick={() => handleAnswerClick('C')}
-                >
-                  C. Put the money in a High-Interest Savings Account (HISA)
-                </div>
-                <div 
-                  className="quiz-option"
-                  onClick={() => handleAnswerClick('D')}
-                >
-                  D. Invest in a Non-Registered Brokerage Account
+                  Let's Start!
+                </button>
+                <div className="dolphins-container">
+                  <span className={`dolphin ${isDolphinsSwimming ? 'swimming' : ''}`}>🐬</span>
+                  <span className={`dolphin ${isDolphinsSwimming ? 'swimming' : ''}`}>🐬</span>
+                  <span className={`dolphin ${isDolphinsSwimming ? 'swimming' : ''}`}>🐬</span>
+                  <span className={`dolphin ${isDolphinsSwimming ? 'swimming' : ''}`}>🐬</span>
                 </div>
               </div>
-
-              {selectedAnswer && getFeedbackMessage()}
             </div>
           </div>
+
+          {quizStarted && (
+            <div className="fin-message-container">
+              <div className="fin-avatar-placeholder">
+                {/* Placeholder for Fin's avatar */}
+              </div>
+              <div className="quiz-question-bubble">
+                <p>Emily is 22 years old, just graduated, and started her first full-time job with a salary of $40,000. She has $3,000 to invest this year. Emily is in a relatively low tax bracket and expects her income to grow over time. Which account should she prioritize for this $3,000?</p>
+                
+                <div className="quiz-options">
+                  <div 
+                    className="quiz-option"
+                    onClick={() => handleAnswerClick('A')}
+                  >
+                    A. Contribute to her RRSP (Registered Retirement Savings Plan)
+                  </div>
+                  <div 
+                    className="quiz-option"
+                    onClick={() => handleAnswerClick('B')}
+                  >
+                    B. Contribute to her TFSA (Tax-Free Savings Account)
+                  </div>
+                  <div 
+                    className="quiz-option"
+                    onClick={() => handleAnswerClick('C')}
+                  >
+                    C. Put the money in a High-Interest Savings Account (HISA)
+                  </div>
+                  <div 
+                    className="quiz-option"
+                    onClick={() => handleAnswerClick('D')}
+                  >
+                    D. Invest in a Non-Registered Brokerage Account
+                  </div>
+                </div>
+
+                {selectedAnswer && getFeedbackMessage()}
+              </div>
+            </div>
+          )}
         </div>
         <Chatbot />
       </div>
