@@ -7,6 +7,7 @@ interface Transaction {
   amount: number;
   category: string;
   date: string;
+  description: string;
 }
 
 interface ButtonProps {
@@ -70,6 +71,7 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
             amount: Number(amount),
             category: category,
             date: new Date().toISOString(),
+            description: inputValue,
         };
 
         try {

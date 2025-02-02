@@ -12,13 +12,20 @@ interface Transaction {
   amount: number;
   category: string;
   date: string;
+  description: string;
 }
 
 const Income_and_expenses: React.FC = () => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const addTransaction = (newTransaction: Transaction) => {
-        setTransactions(prev => [...prev, newTransaction]);
+        // Format to show "Description - Category"
+        const formattedTransaction = {
+            ...newTransaction,
+            // Use the description from input and category from selection
+            category: `${newTransaction.description} - ${newTransaction.category}`
+        };
+        setTransactions(prev => [...prev, formattedTransaction]);
     };
 
     useEffect(() => {
@@ -26,7 +33,7 @@ const Income_and_expenses: React.FC = () => {
         const message = "Income and Expenses WebPage";
         const utterance = new SpeechSynthesisUtterance(message);
         window.speechSynthesis.speak(utterance);
-    }, []); // Empty dependency array means this runs once when component mounts
+    }, []);
 
     return (
         <>
