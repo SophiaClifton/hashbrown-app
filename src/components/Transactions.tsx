@@ -1,5 +1,6 @@
 import React from "react";
 import "./Transactions.css";
+import { COLORS } from "./DoughnutCharts"; // Import the colors
 
 interface Transaction {
   id: string;
@@ -19,6 +20,18 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
   const incomeTransactions = transactions.filter(t => t.type === 'income');
   const expenseTransactions = transactions.filter(t => t.type === 'expense');
 
+  // Create a map of categories to colors
+  const categoryColorMap: { [key: string]: string } = {};
+  let colorIndex = 0;
+  
+  // First pass to assign colors consistently
+  transactions.forEach(transaction => {
+    if (!categoryColorMap[transaction.category]) {
+      categoryColorMap[transaction.category] = COLORS[colorIndex % COLORS.length];
+      colorIndex++;
+    }
+  });
+
   const formatAmount = (amount: number) => {
     return new Intl.NumberFormat('en-CA', {
       style: 'currency',
@@ -34,11 +47,14 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
           <span>💰</span>
         </div>
         <div className="transaction-list">
-          {incomeTransactions.map(transaction => (
-            <div key={transaction.id} className="transaction-item">
+          {incomeTransactions.map((transaction) => (
+            <div 
+              key={transaction.id} 
+              className="transaction-item"
+              style={{ borderLeft: `4px solid ${categoryColorMap[transaction.category]}` }}
+            >
               <div className="transaction-details">
                 <span className="transaction-name">{transaction.category}</span>
-                <span className="transaction-type">({transaction.type})</span>
               </div>
               <div className="transaction-right">
                 <span className="transaction-amount">
@@ -63,11 +79,14 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
           <span>💸</span>
         </div>
         <div className="transaction-list">
-          {expenseTransactions.map(transaction => (
-            <div key={transaction.id} className="transaction-item">
+          {expenseTransactions.map((transaction) => (
+            <div 
+              key={transaction.id} 
+              className="transaction-item"
+              style={{ borderLeft: `4px solid ${categoryColorMap[transaction.category]}` }}
+            >
               <div className="transaction-details">
                 <span className="transaction-name">{transaction.category}</span>
-                <span className="transaction-type">({transaction.type})</span>
               </div>
               <div className="transaction-right">
                 <span className="transaction-amount">

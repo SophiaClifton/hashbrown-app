@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Banner from "../components/Banner";
 import Chatbot from "../components/Chatbot";
 import Button from "../components/but";
-import DoughnutCharts from "../components/DoughnutCharts";
+import { DoughnutCharts } from "../components/DoughnutCharts";
 import Transactions from "../components/Transactions";
 import "./Income_and_expenses.css"
 
@@ -19,11 +19,10 @@ const Income_and_expenses: React.FC = () => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const addTransaction = (newTransaction: Transaction) => {
-        // Format to show "Description - Category"
+        // Only use the description for display
         const formattedTransaction = {
             ...newTransaction,
-            // Use the description from input and category from selection
-            category: `${newTransaction.description} - ${newTransaction.category}`
+            category: newTransaction.description // Just use description instead of combining with category
         };
         setTransactions(prev => [...prev, formattedTransaction]);
     };
