@@ -10,6 +10,7 @@ interface Transaction {
   category: string;
   date: string;
   description: string;
+  recurring?:string;
 }
 
 interface TransactionsProps {

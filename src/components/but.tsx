@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useSession } from './SessionProvider';
 
 interface Transaction {
   id: string;
@@ -8,6 +9,7 @@ interface Transaction {
   category: string;
   date: string;
   description: string;
+  recurring:string;
 }
 
 interface ButtonProps {
@@ -65,29 +67,65 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
         flex: 1,
     };
 
+    const API_URL = process.env.REACT_APP_API_URL || ""; // Load from .env
+    const { user } = useSession();
+    const sendTransactionToAPI = async (transaction: Transaction): Promise<Transaction | null> => {
+        try {
+            const current_transaction = {
+                user_id: user.id,      // Ensure this is a valid user ID
+                date: transaction.date,
+                amount: transaction.amount,
+                category_id: transaction.category,  // Ensure the API expects 'category_id'
+                source: transaction.description,
+                recurring: transaction.recurring   // Ensure API supports this format
+            };
+            console.log(current_transaction);
+            console.log("Sending JSON to API:", JSON.stringify(current_transaction, null, 2));
+            // Send transaction data to API
+            const response = await axios.post(`${API_URL}transactions/add_transaction`, current_transaction, {
+                headers: { "Content-Type": "application/json" } // Ensures proper JSON format
+            });
+    
+            if (response.status === 201 || response.status === 200) {
+                return { ...transaction, id: response.data.id }; // Return API's actual transaction ID
+            } else {
+                throw new Error('Failed to add transaction');
+            }
+        } catch (error) {
+            console.error('API Error:', error);
+            return null;
+        }
+    };
+    
+
     const handleButtonClick = async () => {
         if (!inputValue.trim() || !category || amount === '' || Number(amount) <= 0) {
             setError('All fields must be filled, and the amount must be greater than 0.');
             return;
         }
-
+    
         setError(null); // Clear previous errors
+    
         const newTransaction: Transaction = {
-            id: Date.now().toString(),
+            id: Date.now().toString(), 
             type: type as 'income' | 'expense',
             amount: Number(amount),
             category: category,
             date: new Date().toISOString(),
             description: inputValue,
+            recurring: "weekly"
         };
-
+    
         try {
-            await sending(inputValue, type, category, amount);
-            onAddTransaction(newTransaction);
-            resetForm();
-            setFormVisible(false);
+            const addedTransaction = await sendTransactionToAPI(newTransaction);
+            if (addedTransaction) {
+                onAddTransaction(addedTransaction); // Update UI only after API success
+                resetForm();
+                setFormVisible(false);
+            }
         } catch (error) {
-            console.error('Error making request:', error);
+            console.error('Error adding transaction:', error);
+            setError('Failed to add transaction. Please try again.');
         }
     };
 

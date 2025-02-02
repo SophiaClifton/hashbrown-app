@@ -23,6 +23,8 @@ const Login: React.FC = () => {
       const response = await fetch(`${API_URL}verify_user?email=${encodeURIComponent(email)}`);
       const data = await response.json();
 
+      console.log("API Response:", data); // Log full response
+
       if (response.ok && data.isValid) {
         // Set user data from API response
         setUser({
@@ -34,6 +36,7 @@ const Login: React.FC = () => {
         // Navigate to home page
         navigate('/');
       } else {
+        navigate('/login');
         setError('Invalid email. Please try again.');
       }
     } catch (err) {

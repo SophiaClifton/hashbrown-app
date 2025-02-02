@@ -8,7 +8,7 @@ interface User {
 
 export const defaultUser: User = {
   username: "Penny Stock",
-  email: "penny_stock@gmail.com",
+  email: "stock@gmail.com",
   id: 1,
 };
 
