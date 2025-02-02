@@ -86,7 +86,7 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) =
               style={{ borderLeft: `4px solid ${categoryColorMap[transaction.category]}` }}
             >
               <div className="transaction-details">
-                <span className="transaction-name">{transaction.category}</span>
+                <span className="transaction-name">{transaction.description}</span>
               </div>
               <div className="transaction-right">
                 <span className="transaction-amount">
