@@ -4,14 +4,24 @@ import Sidebar from "../components/Sidebar";
 import Chatbot from "../components/Chatbot";
 import "./FinancialLiteracyQuiz.css";
 
+interface AttemptTracker {
+  [key: number]: number;
+}
+
 const FinancialLiteracyQuiz: React.FC = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [isDolphinsSwimming, setIsDolphinsSwimming] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [attempts, setAttempts] = useState<AttemptTracker>({});
+  const [showResults, setShowResults] = useState(false);
 
   const handleAnswerClick = (answer: string) => {
     setSelectedAnswer(answer);
+    setAttempts(prev => ({
+      ...prev,
+      [currentQuestion]: (prev[currentQuestion] || 0) + 1
+    }));
   };
 
   const handleStartClick = () => {
@@ -36,7 +46,9 @@ const FinancialLiteracyQuiz: React.FC = () => {
   };
 
   const handleNextQuestion = () => {
-    if (selectedAnswer === 'B' && currentQuestion === 1) {
+    if (currentQuestion === 5 && selectedAnswer === 'A') {
+      setShowResults(true);
+    } else if (selectedAnswer === 'B' && currentQuestion === 1) {
       setCurrentQuestion(2);
       setSelectedAnswer(null);
     } else if (selectedAnswer === 'A' && currentQuestion === 2) {
@@ -52,6 +64,14 @@ const FinancialLiteracyQuiz: React.FC = () => {
       setCurrentQuestion(6);
       setSelectedAnswer(null);
     }
+  };
+
+  const resetQuiz = () => {
+    setSelectedAnswer(null);
+    setQuizStarted(false);
+    setCurrentQuestion(1);
+    setAttempts({});
+    setShowResults(false);
   };
 
   const getFeedbackMessage = () => {
@@ -326,6 +346,14 @@ const FinancialLiteracyQuiz: React.FC = () => {
     return [];
   };
 
+  const getFirstAttemptCorrect = () => {
+    let count = 0;
+    for (let i = 1; i <= 5; i++) {
+      if (attempts[i] === 1) count++;
+    }
+    return count;
+  };
+
   return (
     <div>
       <Banner />
@@ -406,6 +434,26 @@ const FinancialLiteracyQuiz: React.FC = () => {
         </div>
         <Chatbot />
       </div>
+
+      {showResults && (
+        <div className="quiz-results-overlay">
+          <div className="quiz-results-popup">
+            <button className="close-results" onClick={resetQuiz}>×</button>
+            <h2>🐬 Quiz Results 🐬</h2>
+            <div className="results-content">
+              <p>Correct on First Attempt: {getFirstAttemptCorrect()} / 5</p>
+              <h3>Attempts per Question:</h3>
+              <ul>
+                {Object.entries(attempts).map(([question, attemptCount]) => (
+                  <li key={question}>
+                    Question {question}: {attemptCount} attempt{attemptCount !== 1 ? 's' : ''}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
