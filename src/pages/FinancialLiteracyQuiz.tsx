@@ -18,10 +18,36 @@ const FinancialLiteracyQuiz: React.FC = () => {
 
   const handleAnswerClick = (answer: string) => {
     setSelectedAnswer(answer);
-    setAttempts(prev => ({
-      ...prev,
-      [currentQuestion]: (prev[currentQuestion] || 0) + 1
-    }));
+    
+    // Only increment attempts if we haven't gotten the correct answer yet
+    const isCorrectAnswer = (currentQuestion === 1 && answer === 'B') ||
+                          (currentQuestion >= 2 && currentQuestion <= 6 && answer === 'A');
+                          
+    // Check if this question has already been answered correctly
+    const hasCorrectAnswer = Object.entries(attempts)
+      .some(([q, _]) => parseInt(q) === currentQuestion && isCorrectForQuestion(currentQuestion));
+
+    // Only increment attempts if we haven't gotten the correct answer yet for this question
+    if (!hasCorrectAnswer) {
+      setAttempts(prev => ({
+        ...prev,
+        [currentQuestion]: (prev[currentQuestion] || 0) + 1
+      }));
+    }
+  };
+
+  // Update isCorrectForQuestion to not require previous attempts
+  const isCorrectForQuestion = (questionNumber: number) => {
+    const correctAnswers = {
+      1: 'B',
+      2: 'A',
+      3: 'A',
+      4: 'A',
+      5: 'A',
+      6: 'A'
+    };
+    
+    return selectedAnswer === correctAnswers[questionNumber as keyof typeof correctAnswers];
   };
 
   const handleStartClick = () => {
