@@ -15,12 +15,16 @@ const FinancialLiteracyQuiz: React.FC = () => {
   };
 
   const handleStartClick = () => {
+    // Reset all quiz state
+    setSelectedAnswer(null);
+    setCurrentQuestion(1);
+    
+    // Trigger dolphin animation
     setIsDolphinsSwimming(true);
-    // Add random swim directions for each dolphin
     const dolphins = document.querySelectorAll('.dolphin');
     dolphins.forEach((dolphin) => {
-      const swimX = Math.random() * 400 - 200; // Random X between -200 and 200
-      const swimAngle = Math.random() * 60 - 30; // Random angle between -30 and 30 degrees
+      const swimX = Math.random() * 400 - 200;
+      const swimAngle = Math.random() * 60 - 30;
       (dolphin as HTMLElement).style.setProperty('--swim-x', `${swimX}px`);
       (dolphin as HTMLElement).style.setProperty('--swim-angle', `${swimAngle}deg`);
     });
@@ -34,6 +38,9 @@ const FinancialLiteracyQuiz: React.FC = () => {
   const handleNextQuestion = () => {
     if (selectedAnswer === 'B' && currentQuestion === 1) {
       setCurrentQuestion(2);
+      setSelectedAnswer(null);
+    } else if (selectedAnswer === 'A' && currentQuestion === 2) {
+      setCurrentQuestion(3);
       setSelectedAnswer(null);
     }
   };
@@ -89,6 +96,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
               <li>C. Chequing Account: This offers no meaningful interest, so inflation erodes the value of the money over time.</li>
               <li>D. High-Risk Stocks: For a short 3-year goal, high volatility could mean James might face significant losses if the market dips at the wrong time.</li>
             </ul>
+            <button 
+              className="start-button" 
+              onClick={handleNextQuestion}
+              style={{ marginTop: '20px' }}
+            >
+              Next Question
+            </button>
           </div>
         );
       } else {
@@ -97,6 +111,32 @@ const FinancialLiteracyQuiz: React.FC = () => {
             <h3>Incorrect Answer</h3>
             <p>The correct answer is A. Contribute to a TFSA and invest conservatively.</p>
             <p>A TFSA is flexible; any gains you earn are tax-free, and withdrawals will not trigger taxation or affect future contribution room if you re-contribute in subsequent years. For a 3-year time horizon, a conservative investment or a high-interest TFSA can help James protect his savings while still earning some growth.</p>
+          </div>
+        );
+      }
+    } else if (currentQuestion === 3) {
+      if (selectedAnswer === 'A') {
+        return (
+          <div className="feedback-message correct">
+            <div className="happy-dolphin-container">
+              🐬
+            </div>
+            <h3>Correct Answer!</h3>
+            <p>High-interest credit card debt is extremely costly. Paying it off first is almost always the best strategy because you effectively earn a "return" equal to the avoided 19% interest. After eliminating high-interest debt, Mia can direct future savings toward investments.</p>
+            <h4>Why the Other Options Are Less Ideal:</h4>
+            <ul>
+              <li>B. TFSA while making minimum payments: The 19% interest on the card is far higher than typical TFSA investment returns, so Mia would be losing money by not paying down the card.</li>
+              <li>C. Splitting the bonus: While it's better than not paying the card at all, carrying any high-interest debt still costs a lot. Paying it off completely first saves more money in the long run.</li>
+              <li>D. GIC + minimum payments: A GIC might offer ~1–5% interest (depending on the market), which pales in comparison to 19% credit card interest costs.</li>
+            </ul>
+          </div>
+        );
+      } else {
+        return (
+          <div className="feedback-message incorrect">
+            <h3>Incorrect Answer</h3>
+            <p>The correct answer is A. Pay off the Credit Card Debt.</p>
+            <p>High-interest credit card debt is extremely costly. Paying it off first is almost always the best strategy because you effectively earn a "return" equal to the avoided 19% interest. After eliminating high-interest debt, Mia can direct future savings toward investments.</p>
           </div>
         );
       }
@@ -111,6 +151,10 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (currentQuestion === 2) {
       return (
         <p>James is 30 years old and wants to buy his first home in the next 3 years. He has $10,000 saved and plans to add more monthly. He is considering using an RRSP, a TFSA, or leaving the money in a chequing account. Which is the most suitable option for short-term home savings in Canada?</p>
+      );
+    } else if (currentQuestion === 3) {
+      return (
+        <p>Mia has $5,000 in credit card debt at a 19% annual interest rate. She recently received a $5,000 bonus from work. She wonders whether to invest it or pay off her credit card balance first.</p>
       );
     }
   };
@@ -129,6 +173,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
         { value: 'B', label: 'Contribute to an RRSP and plan to withdraw under the Home Buyers\' Plan (HBP)' },
         { value: 'C', label: 'Keep the money in a Chequing Account' },
         { value: 'D', label: 'Invest aggressively in High-Risk Stocks' }
+      ];
+    } else if (currentQuestion === 3) {
+      return [
+        { value: 'A', label: 'Pay off the Credit Card Debt' },
+        { value: 'B', label: 'Invest in a TFSA and continue making minimum payments on the credit card' },
+        { value: 'C', label: 'Split the bonus: Half to credit card, half to a High-Interest Savings Account' },
+        { value: 'D', label: 'Invest in a Guaranteed Investment Certificate (GIC) and make minimum payments on the card' }
       ];
     }
     return [];
