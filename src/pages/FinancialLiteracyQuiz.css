@@ -36,25 +36,10 @@
   animation: float 3s ease-in-out infinite;
 }
 
-.fin-message-bubble::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 30px;
-  border-style: solid;
-  border-width: 15px 20px 15px 0;
-  border-color: transparent #a8e0ff transparent transparent;
-}
-
-.fin-message-bubble::after {
-  content: '';
-  position: absolute;
-  left: -17px;
-  top: 30px;
-  border-style: solid;
-  border-width: 15px 20px 15px 0;
-  border-color: transparent #e6f7ff transparent transparent;
-}
+/* Remove or comment out the old ::before and ::after bubble decorations */
+/* .fin-message-bubble::before, .fin-message-bubble::after {
+  // Remove these or comment them out
+} */
 
 .fin-message-bubble p {
   color: #2c5282;
@@ -86,21 +71,84 @@
   }
 }
 
-/* Water-themed decorative elements */
-.fin-message-bubble::after {
-  content: '🌊';
-  position: absolute;
-  bottom: -15px;
-  right: 30px;
-  font-size: 20px;
-  animation: wave 2s ease-in-out infinite;
-}
-
-@keyframes wave {
-  0%, 100% {
-    transform: rotate(0deg);
+@keyframes waterDrop {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
   }
   50% {
-    transform: rotate(10deg);
+    transform: translateY(200px) scale(1.1);
+    opacity: 0.5;
   }
-} 
+  100% {
+    transform: translateY(400px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Update the water drops container to span the full bubble */
+.fin-message-bubble .water-drops {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*pointer-events: none;  Ensure drops don't interfere with text interaction */
+  overflow: hidden;
+}
+
+/* Create more water drops with different positions */
+.water-drop {
+  position: absolute;
+  width: 8px; /* Increased from 4px */
+  height: 8px; /* Increased from 4px */
+  background: #a8e0ff;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 4px #a8e0ff; /* Add glow effect */
+}
+
+/* Position drops across the bubble with adjusted animations */
+.water-drop:nth-child(1) { left: 10%; animation: continuousWaterDrop 3s infinite; }
+.water-drop:nth-child(2) { left: 30%; animation: continuousWaterDrop 3.5s infinite 0.5s; }
+.water-drop:nth-child(3) { left: 50%; animation: continuousWaterDrop 3.2s infinite 1s; }
+.water-drop:nth-child(4) { left: 70%; animation: continuousWaterDrop 3.7s infinite 1.5s; }
+.water-drop:nth-child(5) { left: 90%; animation: continuousWaterDrop 3.3s infinite 2s; }
+.water-drop:nth-child(6) { left: 20%; animation: continuousWaterDrop 3.6s infinite 0.7s; }
+.water-drop:nth-child(7) { left: 40%; animation: continuousWaterDrop 3.4s infinite 1.2s; }
+.water-drop:nth-child(8) { left: 60%; animation: continuousWaterDrop 3.8s infinite 1.7s; }
+.water-drop:nth-child(9) { left: 80%; animation: continuousWaterDrop 3.1s infinite 2.2s; }
+.water-drop:nth-child(10) { left: 15%; animation: continuousWaterDrop 3.9s infinite 0.3s; }
+
+@keyframes continuousWaterDrop {
+  0% {
+    transform: translateY(-20px) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8; /* Increased from 0.6 */
+  }
+  50% {
+    opacity: 0.6; /* Increased from 0.4 */
+    transform: translateY(200px) scale(1.2); /* Increased scale */
+  }
+  80% {
+    opacity: 0.4; /* Increased from 0.2 */
+  }
+  100% {
+    transform: translateY(400px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Keep the chat bubble pointer */
+.fin-message-bubble::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 30px;
+  border-style: solid;
+  border-width: 15px 20px 15px 0;
+  border-color: transparent #a8e0ff transparent transparent;
+  pointer-events: none;
+}

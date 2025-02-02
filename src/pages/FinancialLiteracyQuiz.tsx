@@ -16,6 +16,18 @@ const FinancialLiteracyQuiz: React.FC = () => {
               {/* Placeholder for Fin's avatar */}
             </div>
             <div className="fin-message-bubble">
+              <div className="water-drops">
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+                <div className="water-drop"></div>
+              </div>
               <p>Heya! Fin the FinTech bot is here to help! 🐬</p>
               <p>Ready to make some waves 🌊 with your financial know-how? You've come to the right place! I've got six splashtastic 🛟, real-life scenarios all about deciding whether to invest in an RRSP or TFSA, or how to handle high-interest credit card debt. Each question gives you multiple answers, but only one is the real catch of the day 🎣.</p>
               <p>Here's how it works, my fin-tastic friends:</p>
