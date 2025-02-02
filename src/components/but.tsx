@@ -141,10 +141,13 @@ const RequestButton: React.FC<ButtonProps> = ({ onAddTransaction }) => {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                     >
-                        <option value="personal">Personal</option>
+                        <option value="essentials">Essentials</option>
+                        <option value="discretionary">Discretionary</option>
+                        <option value="debt_payment">Debt Payment</option>
                         <option value="investment">Investment</option>
-                        <option value="living">Living</option>
-                        <option value="miscellaneous">Miscellaneous</option>
+                        <option value="miscallaneous">Miscallaneous</option>
+                        <option value="saving">Saving</option>
+                        <option value="income">Income</option>
                     </select>
                     <input
                         style={inputStyle}
