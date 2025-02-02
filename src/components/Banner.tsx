@@ -8,7 +8,7 @@ const Banner: React.FC = () => {
       <div className="banner-content">
         <Link to="/" className="banner-logo">
           <span className="logo-dolphin">🐬</span>
-          <span className="logo-text">FinDolphin</span>
+          <span className="logo-text">Finsurance</span>
         </Link>
         
         <nav className="banner-nav">
