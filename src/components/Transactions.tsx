@@ -12,9 +12,10 @@ interface Transaction {
 
 interface TransactionsProps {
   transactions: Transaction[];
+  onDelete: (id: string) => void;
 }
 
-const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
+const Transactions: React.FC<TransactionsProps> = ({ transactions, onDelete }) => {
   const incomeTransactions = transactions.filter(t => t.type === 'income');
   const expenseTransactions = transactions.filter(t => t.type === 'expense');
 
@@ -39,9 +40,18 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
                 <span className="transaction-name">{transaction.category}</span>
                 <span className="transaction-type">({transaction.type})</span>
               </div>
-              <span className="transaction-amount">
-                {formatAmount(transaction.amount)}
-              </span>
+              <div className="transaction-right">
+                <span className="transaction-amount">
+                  {formatAmount(transaction.amount)}
+                </span>
+                <button 
+                  className="delete-button"
+                  onClick={() => onDelete(transaction.id)}
+                  aria-label="Delete transaction"
+                >
+                  ×
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -59,9 +69,18 @@ const Transactions: React.FC<TransactionsProps> = ({ transactions }) => {
                 <span className="transaction-name">{transaction.category}</span>
                 <span className="transaction-type">({transaction.type})</span>
               </div>
-              <span className="transaction-amount">
-                {formatAmount(transaction.amount)}
-              </span>
+              <div className="transaction-right">
+                <span className="transaction-amount">
+                  {formatAmount(transaction.amount)}
+                </span>
+                <button 
+                  className="delete-button"
+                  onClick={() => onDelete(transaction.id)}
+                  aria-label="Delete transaction"
+                >
+                  ×
+                </button>
+              </div>
             </div>
           ))}
         </div>

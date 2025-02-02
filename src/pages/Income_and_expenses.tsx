@@ -28,6 +28,10 @@ const Income_and_expenses: React.FC = () => {
         setTransactions(prev => [...prev, formattedTransaction]);
     };
 
+    const deleteTransaction = (id: string) => {
+        setTransactions(prev => prev.filter(transaction => transaction.id !== id));
+    };
+
     useEffect(() => {
         // Create and play the audio message when component mounts
         const message = "Income and Expenses WebPage";
@@ -44,7 +48,10 @@ const Income_and_expenses: React.FC = () => {
                     <div className="charts-container">
                         <DoughnutCharts transactions={transactions} />
                     </div>
-                    <Transactions transactions={transactions} />
+                    <Transactions 
+                        transactions={transactions} 
+                        onDelete={deleteTransaction} 
+                    />
                 </div>
             </div>
             <Chatbot />
