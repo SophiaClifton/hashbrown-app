@@ -66,7 +66,6 @@ const Home: React.FC = () => {
           <div className="hero-section">
             <h1 className="hero-title">
               Navigate Your Financial Journey
-              <span className="wave-emoji">🌊</span>
             </h1>
             <p className="hero-subtitle">
               Let Fin guide you through the waters of financial wellness
