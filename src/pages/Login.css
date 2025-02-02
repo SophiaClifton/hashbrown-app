@@ -70,6 +70,32 @@
   animation: float 3s ease-in-out infinite;
 }
 
+/* Add shark fin */
+.dolphin-head::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 45px;
+  background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Add blush */
+.dolphin-head::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 12px;
+  background: rgba(255, 192, 203, 0.4);
+  border-radius: 50%;
+  top: 45%;
+  left: 15%;
+  box-shadow: 70px 0 rgba(255, 192, 203, 0.4);
+}
+
 .dolphin-face {
   position: absolute;
   width: 100%;
@@ -121,12 +147,12 @@
 
 .dolphin-smile {
   position: absolute;
-  width: 40px;
-  height: 20px;
+  width: 30px;
+  height: 15px;
   border: 3px solid #1565C0;
-  border-radius: 0 0 40px 40px;
+  border-radius: 0 0 30px 30px;
   border-top: 0;
-  bottom: 25%;
+  bottom: 30%;
 }
 
 /* Form styles */
