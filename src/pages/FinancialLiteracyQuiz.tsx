@@ -42,6 +42,9 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (selectedAnswer === 'A' && currentQuestion === 2) {
       setCurrentQuestion(3);
       setSelectedAnswer(null);
+    } else if (selectedAnswer === 'A' && currentQuestion === 3) {
+      setCurrentQuestion(4);
+      setSelectedAnswer(null);
     }
   };
 
@@ -129,6 +132,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
               <li>C. Splitting the bonus: While it's better than not paying the card at all, carrying any high-interest debt still costs a lot. Paying it off completely first saves more money in the long run.</li>
               <li>D. GIC + minimum payments: A GIC might offer ~1–5% interest (depending on the market), which pales in comparison to 19% credit card interest costs.</li>
             </ul>
+            <button 
+              className="start-button" 
+              onClick={handleNextQuestion}
+              style={{ marginTop: '20px' }}
+            >
+              Next Question
+            </button>
           </div>
         );
       } else {
@@ -137,6 +147,32 @@ const FinancialLiteracyQuiz: React.FC = () => {
             <h3>Incorrect Answer</h3>
             <p>The correct answer is A. Pay off the Credit Card Debt.</p>
             <p>High-interest credit card debt is extremely costly. Paying it off first is almost always the best strategy because you effectively earn a "return" equal to the avoided 19% interest. After eliminating high-interest debt, Mia can direct future savings toward investments.</p>
+          </div>
+        );
+      }
+    } else if (currentQuestion === 4) {
+      if (selectedAnswer === 'A') {
+        return (
+          <div className="feedback-message correct">
+            <div className="happy-dolphin-container">
+              🐬
+            </div>
+            <h3>Correct Answer!</h3>
+            <p>An emergency fund of 3–6 months of expenses provides a financial safety net if Daniel faces unexpected costs or job loss. A high-interest savings account ensures the funds remain accessible and preserve purchasing power better than a regular chequing account.</p>
+            <h4>Why the Other Options Are Less Ideal:</h4>
+            <ul>
+              <li>B. Canadian Equity ETF: While investing for growth is important, going "all in" on equities before establishing an emergency fund is risky. A job loss or large expense could force him to sell at a bad time.</li>
+              <li>C. Crypto Assets + TFSA: Crypto can be highly volatile and not suitable as a first move before having stable savings.</li>
+              <li>D. Individual Stocks: Concentrated investments without a safety net can be too high-risk, especially if Daniel needs cash in an emergency.</li>
+            </ul>
+          </div>
+        );
+      } else {
+        return (
+          <div className="feedback-message incorrect">
+            <h3>Incorrect Answer</h3>
+            <p>The correct answer is A. Build an Emergency Fund in a High-Interest Savings Account.</p>
+            <p>An emergency fund of 3–6 months of expenses provides a financial safety net if Daniel faces unexpected costs or job loss. A high-interest savings account ensures the funds remain accessible and preserve purchasing power better than a regular chequing account.</p>
           </div>
         );
       }
@@ -155,6 +191,10 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (currentQuestion === 3) {
       return (
         <p>Mia has $5,000 in credit card debt at a 19% annual interest rate. She recently received a $5,000 bonus from work. She wonders whether to invest it or pay off her credit card balance first.</p>
+      );
+    } else if (currentQuestion === 4) {
+      return (
+        <p>Daniel is 25 and has started a new job in Vancouver. He has no emergency savings and is renting an apartment. He has $2,000 he can allocate monthly after basic expenses. What should his first financial priority be?</p>
       );
     }
   };
@@ -180,6 +220,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
         { value: 'B', label: 'Invest in a TFSA and continue making minimum payments on the credit card' },
         { value: 'C', label: 'Split the bonus: Half to credit card, half to a High-Interest Savings Account' },
         { value: 'D', label: 'Invest in a Guaranteed Investment Certificate (GIC) and make minimum payments on the card' }
+      ];
+    } else if (currentQuestion === 4) {
+      return [
+        { value: 'A', label: 'Build an Emergency Fund in a High-Interest Savings Account' },
+        { value: 'B', label: 'Invest all $2,000 in a Canadian Equity ETF for higher returns' },
+        { value: 'C', label: 'Put half in Crypto Assets and half in a TFSA' },
+        { value: 'D', label: 'Immediately buy Individual Stocks with the entire $2,000' }
       ];
     }
     return [];
