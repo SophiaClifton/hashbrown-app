@@ -24,6 +24,12 @@ body.dark-mode .quiz-container {
   align-items: flex-start;
 }
 
+/* Add this style to hide the top avatar when quiz starts */
+.quiz-started .initial-fin-avatar {
+  display: none;
+}
+
+/* Update the existing fin avatar styles */
 .fin-avatar-placeholder {
   width: 200px;
   height: 400px;

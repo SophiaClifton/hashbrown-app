@@ -107,12 +107,11 @@ const FinancialLiteracyQuiz: React.FC = () => {
   const getFeedbackMessage = () => {
     if (!selectedAnswer) return null;
 
-    // Add this helper function at the start of getFeedbackMessage
     const isCorrectAnswer = (currentQuestion === 1 && selectedAnswer === 'B') ||
                            (currentQuestion >= 2 && currentQuestion <= 6 && selectedAnswer === 'A');
 
-    // Add a class to the avatar placeholder when answer is incorrect
-    const avatarPlaceholder = document.querySelector('.fin-avatar-placeholder');
+    // Update selector to target only the question avatar
+    const avatarPlaceholder = document.querySelector('.question-fin-avatar');
     if (avatarPlaceholder) {
       if (!isCorrectAnswer) {
         avatarPlaceholder.classList.add('incorrect');
@@ -458,11 +457,11 @@ const FinancialLiteracyQuiz: React.FC = () => {
   return (
     <div>
       <Banner />
-      <div className="quiz-container">
+      <div className={`quiz-container ${quizStarted ? 'quiz-started' : ''}`}>
         <div className="quiz-content">
           <div className="fin-message-container">
-            <div className="fin-avatar-placeholder">
-              {/* Placeholder for Fin's avatar */}
+            <div className="fin-avatar-placeholder initial-fin-avatar">
+              {/* Initial Fin avatar */}
             </div>
             <div className="fin-message-bubble">
               <button 
@@ -514,8 +513,8 @@ const FinancialLiteracyQuiz: React.FC = () => {
 
           {quizStarted && (
             <div className="fin-message-container">
-              <div className="fin-avatar-placeholder">
-                {/* Placeholder for Fin's avatar */}
+              <div className="fin-avatar-placeholder question-fin-avatar">
+                {/* Question Fin avatar */}
               </div>
               <div className="quiz-question-bubble">
                 {getCurrentQuestion()}
