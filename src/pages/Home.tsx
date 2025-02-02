@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import Chatbot from "../components/Chatbot";
 import { useNavigate, useLocation } from 'react-router-dom';
 import "./Home.css";
+import { FaChartLine, FaQuestionCircle, FaLightbulb, FaLifeRing, FaWater } from 'react-icons/fa';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -61,6 +62,18 @@ const Home: React.FC = () => {
       <Banner />
       <div className="home-container">
         <div className="home-content">
+          {/* Hero Section */}
+          <div className="hero-section">
+            <h1 className="hero-title">
+              Navigate Your Financial Journey
+              <span className="wave-emoji">🌊</span>
+            </h1>
+            <p className="hero-subtitle">
+              Let Fin guide you through the waters of financial wellness
+            </p>
+          </div>
+
+          {/* Existing Fin Message Container */}
           <div className="fin-message-container">
             <div className="fin-avatar-placeholder">
               {/* Placeholder for Fin's full body image */}
@@ -93,6 +106,72 @@ const Home: React.FC = () => {
               </ul>
               <p>If you ever feel lost at sea, just click the chat button at the bottom-right corner, and yours truly will pop up with real-time advice. Let's make waves together and keep your finances afloat!</p>
               <p>Surf's up, friends! 🌊</p>
+            </div>
+          </div>
+
+          {/* Features Grid */}
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaChartLine />
+                <div className="bubble-animation" />
+              </div>
+              <h3>Track Your Finances</h3>
+              <p>Monitor your income and expenses with interactive charts and detailed breakdowns</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaQuestionCircle />
+                <div className="bubble-animation" />
+              </div>
+              <h3>Test Your Knowledge</h3>
+              <p>Challenge yourself with our fin-tastic financial literacy quiz</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaLightbulb />
+                <div className="bubble-animation" />
+              </div>
+              <h3>Smart Insights</h3>
+              <p>Get personalized financial tips and recommendations from Fin</p>
+            </div>
+
+            <div className="feature-card">
+              <div className="feature-icon">
+                <FaLifeRing />
+                <div className="bubble-animation" />
+              </div>
+              <h3>24/7 Support</h3>
+              <p>Chat with Fin anytime for financial guidance and assistance</p>
+            </div>
+          </div>
+
+          {/* Wave Divider */}
+          <div className="wave-divider">
+            <FaWater className="wave-icon" />
+          </div>
+
+          {/* Getting Started Section */}
+          <div className="getting-started">
+            <h2>Start Your Financial Journey</h2>
+            <div className="steps-container">
+              <div className="step">
+                <div className="step-number">1</div>
+                <h3>Track Transactions</h3>
+                <p>Record your daily income and expenses</p>
+              </div>
+              <div className="step">
+                <div className="step-number">2</div>
+                <h3>Analyze Patterns</h3>
+                <p>View your spending habits through charts</p>
+              </div>
+              <div className="step">
+                <div className="step-number">3</div>
+                <h3>Get Insights</h3>
+                <p>Receive personalized financial advice</p>
+              </div>
             </div>
           </div>
         </div>
