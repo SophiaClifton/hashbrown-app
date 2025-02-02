@@ -45,6 +45,9 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (selectedAnswer === 'A' && currentQuestion === 3) {
       setCurrentQuestion(4);
       setSelectedAnswer(null);
+    } else if (selectedAnswer === 'A' && currentQuestion === 4) {
+      setCurrentQuestion(5);
+      setSelectedAnswer(null);
     }
   };
 
@@ -165,6 +168,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
               <li>C. Crypto Assets + TFSA: Crypto can be highly volatile and not suitable as a first move before having stable savings.</li>
               <li>D. Individual Stocks: Concentrated investments without a safety net can be too high-risk, especially if Daniel needs cash in an emergency.</li>
             </ul>
+            <button 
+              className="start-button" 
+              onClick={handleNextQuestion}
+              style={{ marginTop: '20px' }}
+            >
+              Next Question
+            </button>
           </div>
         );
       } else {
@@ -173,6 +183,39 @@ const FinancialLiteracyQuiz: React.FC = () => {
             <h3>Incorrect Answer</h3>
             <p>The correct answer is A. Build an Emergency Fund in a High-Interest Savings Account.</p>
             <p>An emergency fund of 3–6 months of expenses provides a financial safety net if Daniel faces unexpected costs or job loss. A high-interest savings account ensures the funds remain accessible and preserve purchasing power better than a regular chequing account.</p>
+          </div>
+        );
+      }
+    } else if (currentQuestion === 5) {
+      if (selectedAnswer === 'A') {
+        return (
+          <div className="feedback-message correct">
+            <div className="happy-dolphin-container">
+              🐬
+            </div>
+            <h3>Correct Answer!</h3>
+            <p>An RESP allows contributions to grow tax-free and makes Aisha eligible for the Canada Education Savings Grant (CESG). The federal government matches 20% on the first $2,500 contributed each year (up to a certain limit), which is essentially free money toward her child's education.</p>
+            <h4>Why the Other Options Are Less Ideal:</h4>
+            <ul>
+              <li>B. TFSA: While TFSAs are good for general savings, Aisha would miss out on the government grants provided specifically for education in an RESP.</li>
+              <li>C. Unregistered Account: Gains are subject to annual taxes and there are no education-specific benefits, missing out on the CESG and tax-sheltered growth.</li>
+              <li>D. Chequing Account: Provides minimal or no interest and no government incentives, meaning the savings won't grow nearly as effectively for education needs.</li>
+            </ul>
+            <button 
+              className="start-button" 
+              onClick={handleNextQuestion}
+              style={{ marginTop: '20px' }}
+            >
+              Next Question
+            </button>
+          </div>
+        );
+      } else {
+        return (
+          <div className="feedback-message incorrect">
+            <h3>Incorrect Answer</h3>
+            <p>The correct answer is A. Open a Registered Education Savings Plan (RESP).</p>
+            <p>An RESP allows contributions to grow tax-free and makes Aisha eligible for the Canada Education Savings Grant (CESG). The federal government matches 20% on the first $2,500 contributed each year (up to a certain limit), which is essentially free money toward her child's education.</p>
           </div>
         );
       }
@@ -195,6 +238,10 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (currentQuestion === 4) {
       return (
         <p>Daniel is 25 and has started a new job in Vancouver. He has no emergency savings and is renting an apartment. He has $2,000 he can allocate monthly after basic expenses. What should his first financial priority be?</p>
+      );
+    } else if (currentQuestion === 5) {
+      return (
+        <p>Aisha is 35 and has a 3-year-old child. She wants to start saving for her child's post-secondary education. She can contribute $2,500 per year. Which is the best vehicle to maximize government benefits and long-term growth for education?</p>
       );
     }
   };
@@ -227,6 +274,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
         { value: 'B', label: 'Invest all $2,000 in a Canadian Equity ETF for higher returns' },
         { value: 'C', label: 'Put half in Crypto Assets and half in a TFSA' },
         { value: 'D', label: 'Immediately buy Individual Stocks with the entire $2,000' }
+      ];
+    } else if (currentQuestion === 5) {
+      return [
+        { value: 'A', label: 'Open a Registered Education Savings Plan (RESP)' },
+        { value: 'B', label: 'Deposit into a TFSA under her name for future education costs' },
+        { value: 'C', label: 'Use an Unregistered Mutual Fund Account' },
+        { value: 'D', label: 'Put the money into a Chequing Account for quick access' }
       ];
     }
     return [];
