@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";  
 import Chatbot from "../components/Chatbot";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import "./Home.css";
 import { FaChartLine, FaQuestionCircle, FaLightbulb, FaLifeRing, FaWater } from 'react-icons/fa';
 
@@ -111,23 +111,23 @@ const Home: React.FC = () => {
 
           {/* Features Grid */}
           <div className="features-grid">
-            <div className="feature-card">
+            <Link to="/income_and_expenses" className="feature-card" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="feature-icon">
                 <FaChartLine />
                 <div className="bubble-animation" />
               </div>
-              <h3>Track Your Finances</h3>
-              <p>Monitor your income and expenses with interactive charts and detailed breakdowns</p>
-            </div>
+              <h3>Budget Your Finances</h3>
+              <p>Budget and plan better so you can enjoy and relax tomorrow more! </p>
+            </Link>
 
-            <div className="feature-card">
+            <Link to="/financial-literacy-quiz" className="feature-card" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="feature-icon">
                 <FaQuestionCircle />
                 <div className="bubble-animation" />
               </div>
               <h3>Test Your Knowledge</h3>
               <p>Challenge yourself with our fin-tastic financial literacy quiz</p>
-            </div>
+            </Link>
 
             <div className="feature-card">
               <div className="feature-icon">
