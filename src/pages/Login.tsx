@@ -6,6 +6,32 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch(`${API_URL}/verify_user?email=${encodeURIComponent(email)}`);
+      console.log(response);
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok && data.isValid) {
+        setUser({ username: data.username, id:data.id, email:data.email });
+        navigate("/");
+      } else {
+        setError("Invalid email. Please try again.");
+      }
+    } catch (err) {
+      setError("Failed to connect to the server. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
