@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Banner.css';
+import User_component from "./User_component";
 
 const Banner: React.FC = () => {
   return (
@@ -9,6 +10,14 @@ const Banner: React.FC = () => {
         <Link to="/" className="banner-logo">
           <span className="logo-dolphin">🐬</span>
           <span className="logo-text">Finsurance</span>
+        </Link>
+
+        <div className="User-content">
+          <User_component/>
+        </div>
+
+        <Link to="/logout">
+        <span> Logout </span>
         </Link>
         
         <nav className="banner-nav">
