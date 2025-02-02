@@ -29,11 +29,11 @@
 }
 
 .fin-avatar-placeholder {
-  width: 200px; /* Wider for full body image */
-  height: 400px; /* Taller for full body image */
-  background-color: rgba(0, 149, 255, 0.1);
-  border-radius: 20px; /* Rounded rectangle instead of circle */
+  width: 200px;
+  height: 400px;
+  border-radius: 20px;
   flex-shrink: 0;
+  background: url('/standing.png') center/contain no-repeat;
 }
 
 /* Dark mode styles */
