@@ -23,7 +23,7 @@ const Login = () => {
       console.log(data);
 
       if (response.ok && data.isValid) {
-        setUser({ username: data.username, id:data.id[1], email:email });
+        setUser({ username: data.username, id:data.id, email:data.email });
         navigate("/");
       } else {
         setError("Invalid email. Please try again.");
