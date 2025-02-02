@@ -1,7 +1,7 @@
 import React from 'react';
 import Banner from "../components/Banner";
 import Chatbot from "../components/Chatbot";
-import Button from "../components/sub";
+import Button from "../components/but";
 import DoughnutCharts from "../components/DoughnutCharts";
 import "./Income_and_expenses.css"
 import { useKeyboardNavigation } from '../hooks/useKeyboardNavigation';
