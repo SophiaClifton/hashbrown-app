@@ -25,15 +25,27 @@ const SessionContext = createContext<SessionContextType | undefined>(undefined);
 // SessionProvider component
 export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>(() => {
+    // Try to get user from sessionStorage first
     const storedUser = sessionStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : defaultUser;
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        // Validate that we have all required fields
+        if (parsedUser.username && parsedUser.email && parsedUser.id) {
+          return parsedUser;
+        }
+      } catch (e) {
+        console.error('Error parsing stored user:', e);
+      }
+    }
+    // Fall back to defaultUser if no valid stored user
+    return defaultUser;
   });
 
   useEffect(() => {
-    if (user && user !== defaultUser) {
+    if (user) {
+      // Always store the current user in sessionStorage
       sessionStorage.setItem("user", JSON.stringify(user));
-    } else {
-      sessionStorage.removeItem("user");
     }
   }, [user]);
 
