@@ -33,11 +33,11 @@ const Income_and_expenses: React.FC = () => {
             <Banner />
             <div className="main-layout">
                 <div className="main-content">
+                    <Button onAddTransaction={addTransaction} />
+                    <Transactions transactions={transactions} />
                     <div className="charts-container">
                         <DoughnutCharts />
                     </div>
-                    <Button onAddTransaction={addTransaction} />
-                    <Transactions transactions={transactions} />
                 </div>
             </div>
             <Chatbot />
