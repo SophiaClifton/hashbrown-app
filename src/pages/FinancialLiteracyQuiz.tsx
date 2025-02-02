@@ -48,6 +48,9 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (selectedAnswer === 'A' && currentQuestion === 4) {
       setCurrentQuestion(5);
       setSelectedAnswer(null);
+    } else if (selectedAnswer === 'A' && currentQuestion === 5) {
+      setCurrentQuestion(6);
+      setSelectedAnswer(null);
     }
   };
 
@@ -219,6 +222,32 @@ const FinancialLiteracyQuiz: React.FC = () => {
           </div>
         );
       }
+    } else if (currentQuestion === 6) {
+      if (selectedAnswer === 'A') {
+        return (
+          <div className="feedback-message correct">
+            <div className="happy-dolphin-container">
+              🐬
+            </div>
+            <h3>Correct Answer!</h3>
+            <p>A balanced fund or ETF typically holds a mix of stocks and bonds, aligning with moderate risk tolerance. Holding this within a TFSA offers tax-free growth. Over 10+ years, this approach can provide a reasonable balance between growth and risk.</p>
+            <h4>Why the Other Options Are Less Ideal:</h4>
+            <ul>
+              <li>B. 1-Year GIC renewed annually: GICs provide guaranteed returns but likely won't keep pace with long-term market returns, especially with inflation.</li>
+              <li>C. High-Risk Cryptocurrency Portfolio: Volatile assets may exceed Noah's moderate risk tolerance, and large swings could jeopardize his long-term savings.</li>
+              <li>D. Chequing Account: Earns little to no interest, meaning inflation would erode purchasing power over time.</li>
+            </ul>
+          </div>
+        );
+      } else {
+        return (
+          <div className="feedback-message incorrect">
+            <h3>Incorrect Answer</h3>
+            <p>The correct answer is A. A Balanced Mutual Fund or ETF through a TFSA.</p>
+            <p>A balanced fund or ETF typically holds a mix of stocks and bonds, aligning with moderate risk tolerance. Holding this within a TFSA offers tax-free growth. Over 10+ years, this approach can provide a reasonable balance between growth and risk.</p>
+          </div>
+        );
+      }
     }
   };
 
@@ -242,6 +271,10 @@ const FinancialLiteracyQuiz: React.FC = () => {
     } else if (currentQuestion === 5) {
       return (
         <p>Aisha is 35 and has a 3-year-old child. She wants to start saving for her child's post-secondary education. She can contribute $2,500 per year. Which is the best vehicle to maximize government benefits and long-term growth for education?</p>
+      );
+    } else if (currentQuestion === 6) {
+      return (
+        <p>Noah is 30 and wants to start investing for mid- to long-term goals (10+ years). He has a moderate risk tolerance and can contribute $400 monthly. Which option is most suitable?</p>
       );
     }
   };
@@ -281,6 +314,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
         { value: 'B', label: 'Deposit into a TFSA under her name for future education costs' },
         { value: 'C', label: 'Use an Unregistered Mutual Fund Account' },
         { value: 'D', label: 'Put the money into a Chequing Account for quick access' }
+      ];
+    } else if (currentQuestion === 6) {
+      return [
+        { value: 'A', label: 'A Balanced Mutual Fund or ETF through a TFSA' },
+        { value: 'B', label: 'A 1-Year GIC renewed annually' },
+        { value: 'C', label: 'A High-Risk Cryptocurrency Portfolio' },
+        { value: 'D', label: 'Keeping funds in a Chequing Account for easy access' }
       ];
     }
     return [];
