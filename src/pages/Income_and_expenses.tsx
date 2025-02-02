@@ -19,10 +19,9 @@ const Income_and_expenses: React.FC = () => {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const addTransaction = (newTransaction: Transaction) => {
-        // Only use the description for display
+        // Keep the original category instead of overwriting it with description
         const formattedTransaction = {
-            ...newTransaction,
-            category: newTransaction.description // Just use description instead of combining with category
+            ...newTransaction
         };
         setTransactions(prev => [...prev, formattedTransaction]);
     };
