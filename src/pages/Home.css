@@ -1,0 +1,9 @@
+/* Add these styles if you want to prevent the default tab highlight */
+:focus {
+  outline: none;
+}
+
+/* Optional: Add a custom focus indicator */
+.focusable:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+} 

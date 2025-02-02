@@ -534,3 +534,41 @@ body.dark-mode .start-button {
   background: linear-gradient(135deg, #3182CE 0%, #2C5282 100%);
   color: white;
 }
+
+/* Add these styles */
+.fin-message-bubble {
+  position: relative; /* Ensure this is set for absolute positioning of button */
+}
+
+.read-message-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.read-message-button:hover {
+  background: rgba(0, 149, 255, 0.1);
+  transform: scale(1.1);
+}
+
+/* Dark mode styles */
+body.dark-mode .read-message-button {
+  color: var(--text-dark);
+}
+
+body.dark-mode .read-message-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

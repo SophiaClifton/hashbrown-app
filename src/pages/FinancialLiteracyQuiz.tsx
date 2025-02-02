@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from "../components/Banner";
 import Chatbot from "../components/Chatbot";
 import "./FinancialLiteracyQuiz.css";
@@ -14,6 +14,7 @@ const FinancialLiteracyQuiz: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [attempts, setAttempts] = useState<AttemptTracker>({});
   const [showResults, setShowResults] = useState(false);
+  const [isReading, setIsReading] = useState(false);
 
   const handleAnswerClick = (answer: string) => {
     setSelectedAnswer(answer);
@@ -397,6 +398,31 @@ const FinancialLiteracyQuiz: React.FC = () => {
     return count;
   };
 
+  const readMessage = () => {
+    if (!isReading) {
+      setIsReading(true);
+      const message = `Heya! Fin the FinTech bot is here to help! Ready to make some waves with your financial know-how? You've come to the right place! I've got six splashtastic, real-life scenarios all about deciding whether to invest in an RRSP or TFSA, or how to handle high-interest credit card debt. Each question gives you multiple answers, but only one is the real catch of the day. Here's how it works, my fin-tastic friends: Read the Scenario: Picture yourself in the story—maybe you're saving for your first home or balancing whether to invest or pay off debt. Pick an Answer: You'll have a few options. Don't worry if you get stuck, it happens to the best dolphins! Check the Explanation: I'll let you know which choice makes the biggest splash and why the others might send you off-course. So, let's dive right in and test those financial flippers! I promise not to blow any bubbles here—just honest, helpful guidance to keep you swimming strong on your journey to financial well-being.`;
+      
+      const utterance = new SpeechSynthesisUtterance(message);
+      utterance.onend = () => setIsReading(false);
+      window.speechSynthesis.speak(utterance);
+    } else {
+      window.speechSynthesis.cancel();
+      setIsReading(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() === 'm') {
+        readMessage();
+      }
+    };
+
+    window.addEventListener('keypress', handleKeyPress);
+    return () => window.removeEventListener('keypress', handleKeyPress);
+  }, [isReading]);
+
   return (
     <div>
       <Banner />
@@ -407,6 +433,13 @@ const FinancialLiteracyQuiz: React.FC = () => {
               {/* Placeholder for Fin's avatar */}
             </div>
             <div className="fin-message-bubble">
+              <button 
+                className="read-message-button" 
+                onClick={readMessage}
+                aria-label={isReading ? "Stop reading" : "Read message"}
+              >
+                {isReading ? '🔊' : '🔈'}
+              </button>
               <div className="water-drops">
                 <div className="water-drop"></div>
                 <div className="water-drop"></div>
